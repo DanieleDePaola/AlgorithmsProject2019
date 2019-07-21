@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/ddani/CLionProjects/ProgettoApi2019/main.c
+stdio.h
+-
+math.h
+-
+string.h
+-
+stdlib.h
+-
+
