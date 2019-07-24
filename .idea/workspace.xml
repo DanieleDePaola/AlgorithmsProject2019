@@ -11,8 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e251273-51ea-4a46-a259-46bf1ea6d7cd" name="Default Changelist" comment="first reading- to test in the posix framework!">
+    <list default="true" id="4e251273-51ea-4a46-a259-46bf1ea6d7cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/main.c.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/ProgettoApi2019.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -37,22 +38,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="5473" />
+          <entry key="c" value="10656" />
           <entry key="in" value="1" />
-          <entry key="m" value="34" />
-          <entry key="txt" value="64" />
+          <entry key="m" value="54" />
+          <entry key="txt" value="238" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Doxygen file" value="5" />
-          <entry key="ObjectiveC" value="5502" />
-          <entry key="PLAIN_TEXT" value="65" />
+          <entry key="Doxygen file" value="12" />
+          <entry key="ObjectiveC" value="10698" />
+          <entry key="PLAIN_TEXT" value="239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="ProgettoApi2019 (disassembly)" value="4" />
+          <entry key="ProgettoApi2019 (disassembly)" value="6" />
           <entry key="c" value="2" />
           <entry key="in" value="3" />
           <entry key="out" value="1" />
@@ -62,7 +63,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="Disassembly" value="4" />
+          <entry key="Disassembly" value="6" />
           <entry key="ObjectiveC" value="2" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
@@ -79,10 +80,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="324">
+              <caret line="262" column="8" lean-forward="true" selection-start-line="262" selection-start-column="8" selection-end-line="262" selection-end-column="8" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#1030#1044#0" />
+                <element signature="e#1099#1127#0" />
+                <element signature="e#1227#1243#0" />
+                <element signature="e#1436#1456#0" />
+                <element signature="e#2733#2788#0" />
+                <element signature="e#2007#2713#0" />
+                <element signature="e#2616#2691#0" />
+                <element signature="e#3261#3341#0" />
+                <element signature="e#3125#3158#0" />
+                <element signature="e#3158#3583#0" />
+                <element signature="e#3476#3536#0" />
+                <element signature="e#3403#3633#0" />
+                <element signature="e#4487#4571#0" />
+                <element signature="e#4487#5991#0" />
+                <element signature="e#3122#3157#0" />
+                <element signature="e#3522#3632#0" />
               </folding>
             </state>
           </provider>
@@ -91,13 +108,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" lean-forward="true" selection-end-line="1" />
+            <state relative-caret-position="210">
+              <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-end-line="23" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>hash</find>
+      <find>addrel</find>
+      <find>indexMem</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -121,9 +145,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1158" />
-    <option name="width" value="1590" />
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="1192" />
     <option name="height" value="1756" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -181,7 +206,7 @@
       <workItem from="1563568026125" duration="3670000" />
       <workItem from="1563615188074" duration="9386000" />
       <workItem from="1563703203490" duration="3450000" />
-      <workItem from="1563738335843" duration="4458000" />
+      <workItem from="1563738335843" duration="17581000" />
     </task>
     <task id="LOCAL-00001" summary="first reading- to test in the posix framework">
       <created>1563706179914</created>
@@ -190,14 +215,28 @@
       <option name="project" value="LOCAL" />
       <updated>1563706179915</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="command reading implement, begin to work on hash table">
+      <created>1563742927206</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1563742927206</updated>
+    </task>
+    <task id="LOCAL-00003" summary="addentity partially implemented">
+      <created>1563971361468</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1563971361468</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25419000" />
+    <option name="totallyTimeSpent" value="38542000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="579" y="0" width="795" height="878" extended-state="0" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.08558888" />
@@ -205,8 +244,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989027" weight="0.32216495" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.34850454" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989027" visible="true" weight="0.32216495" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4806701" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -252,20 +291,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first reading- to test in the posix framework" />
-    <option name="LAST_COMMIT_MESSAGE" value="first reading- to test in the posix framework" />
+    <MESSAGE value="command reading implement, begin to work on hash table" />
+    <MESSAGE value="addentity partially implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="addentity partially implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>131</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>149</line>
-          <option name="timeStamp" value="20" />
+          <line>241</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -273,11 +309,27 @@
       <configuration name="CMakeRunConfiguration">
         <watch expression="string" language="ObjectiveC" />
         <watch expression="buffer[i]" language="ObjectiveC" />
+        <watch expression="entityVector[hashedIndex]" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>buffer[indexBuffer]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[hashedIndex]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>buffer[i]</expression-string>
         <language-id>ObjectiveC</language-id>
@@ -313,11 +365,6 @@
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>tempLineString</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -329,17 +376,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" lean-forward="true" selection-end-line="1" />
+        <state relative-caret-position="210">
+          <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-end-line="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="324">
+          <caret line="262" column="8" lean-forward="true" selection-start-line="262" selection-start-column="8" selection-end-line="262" selection-end-column="8" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#1030#1044#0" />
+            <element signature="e#1099#1127#0" />
+            <element signature="e#1227#1243#0" />
+            <element signature="e#1436#1456#0" />
+            <element signature="e#2733#2788#0" />
+            <element signature="e#2007#2713#0" />
+            <element signature="e#2616#2691#0" />
+            <element signature="e#3261#3341#0" />
+            <element signature="e#3125#3158#0" />
+            <element signature="e#3158#3583#0" />
+            <element signature="e#3476#3536#0" />
+            <element signature="e#3403#3633#0" />
+            <element signature="e#4487#4571#0" />
+            <element signature="e#4487#5991#0" />
+            <element signature="e#3122#3157#0" />
+            <element signature="e#3522#3632#0" />
           </folding>
         </state>
       </provider>

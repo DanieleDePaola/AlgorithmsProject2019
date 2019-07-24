@@ -7,6 +7,9 @@
 #define HASHDEFAULTDIM 2048
 #define BUFFERMAXDIM 1000
 #define DIMENTITYHASHTABLE 1024
+#define DIMENTITYNAME 100
+#define DIMCOMMAND 10
+#define FIELDSINADDREL 10
 
 //GLOBAL VARIABLES AND PROTOTYPES
 
@@ -52,8 +55,14 @@ char * buffer;
 
 void addEntity(char* nameEntity);
 void deleteEntity(char* nameEntity);
-void findName(char* stringLocation, char* buffer);
+char* findEntityName(char* buffer);
 void createEntityStructure(entity** pointerToModify, char* entityName );
+
+void defineRelationFields( char* relSrc, char* relDst, char* relType,char* buffer);
+void addRelation(char *relSrc,char *relDst, char* relType);
+
+void addRelationTypeLeaderboard(leaderboard myLeaderboard, char *nameRelation);
+void addRelationTypeToEntity(char* relSrc, char*relDst);
 
 
 
@@ -69,15 +78,22 @@ int main() {
     //Data acquisition
 
     char* buffer = malloc(BUFFERMAXDIM);
-    char* command = malloc(10);
-    char* entityName = malloc(100);
+    char* command = malloc(DIMCOMMAND);
+    char* entityName=NULL;
 
     while(fgets(buffer,BUFFERMAXDIM, stdin)){
 
         sscanf(buffer, "%s",command);
         if(!strcmp(command, "addent")) {
-            findName(entityName, buffer);
+            entityName=findEntityName(buffer);
             addEntity(entityName);
+        }
+        else if (!strcmp(command, "addrel")) {
+            char* relSrc=NULL;
+            char* relDst=NULL;
+            char* relType=NULL;
+            defineRelationFields(relSrc, relDst, relType, buffer);
+            addRelation(relSrc, relDst, relType);
         }
         else if (!strcmp(command, "delent")) {
             deleteEntity(entityName);
@@ -85,9 +101,7 @@ int main() {
         else if (!strcmp(command, "report")) {
             deleteEntity(entityName);
         }
-        else if (!strcmp(command, "addrel")) {
-            deleteEntity(entityName);
-        }
+
         else if (!strcmp(command, "delrel")) {
             deleteEntity(entityName);
         }
@@ -105,7 +119,8 @@ int main() {
  * @param stringLocation the memory portion where the buffer is saved
  * @param buffer the buffer conten
  */
-void findName(char* stringLocation, char* buffer){
+char* findEntityName(char* buffer){
+    char* stringLocation = malloc(DIMENTITYNAME);
     int indexBuffer=0;
     int indexMemory=0;
     int flag=0;
@@ -120,6 +135,7 @@ void findName(char* stringLocation, char* buffer){
         indexBuffer++;
     }
     stringLocation[indexMemory]='\0';
+    return stringLocation;
 }
 
 /**
@@ -151,7 +167,9 @@ void addEntity(char* nameEntity){
         createEntityStructure(&entityVector[hashedIndex], nameEntity);
     }
     else{
-        //solveConflicts();
+        if(entityVector[hashedIndex]->name!=nameEntity) {  //if entity does not exists yet
+            //solveConflicts();
+        }
     }
 }
 
@@ -171,13 +189,84 @@ void createEntityStructure(entity** pointerToModify, char* entityName){
 
 
 //ADDREL FUNCTIONS
+
+/**
+ * Assigns the correct string to
+ * @param relSrc relation source entity name
+ * @param relDst destination source entity name
+ * @param relType relation type
+ * @param buffer buffer read in input
+ */
+void defineRelationFields( char* relSrc, char* relDst, char* relType, char*buffer){
+    relSrc = malloc(DIMENTITYNAME); //TODO use less memory here
+    relDst = malloc(DIMENTITYNAME);
+    relType = malloc(DIMENTITYNAME);
+    int indexBuffer=0;
+    int flagRelSrcRead=0;
+    int flagRelDstRead=0;
+    int flagRelTypeRead=0;
+    int flagRead=0;
+
+    int indexSrc=0;
+    int indexDst=0;
+    int indexType=0;
+
+
+
+    while(buffer[indexBuffer]!='\0'){
+        if(buffer[indexBuffer]=='"') {
+            flagRead = !flagRead;
+
+            if (buffer[indexBuffer] == '"' && !flagRelSrcRead && !flagRelDstRead && !flagRelTypeRead&&flagRead)flagRelSrcRead = 1;
+            else if (buffer[indexBuffer] == '"' && flagRelSrcRead && !flagRelDstRead&&!flagRead) flagRelDstRead = 1;
+            else if (buffer[indexBuffer] == '"' && flagRelDstRead && !flagRelTypeRead&&!flagRead) flagRelTypeRead = 1;
+        } else {
+            if (buffer[indexBuffer] != '\n' && buffer[indexBuffer] && flagRead && flagRelSrcRead&&!flagRelDstRead) {
+                relSrc[indexSrc] = buffer[indexBuffer];
+                indexSrc++;
+            } else if (buffer[indexBuffer] != '\n' && buffer[indexBuffer] && flagRead && flagRelDstRead&&!flagRelTypeRead) {
+                relDst[indexDst] = buffer[indexBuffer];
+                indexDst++;
+            } else if (buffer[indexBuffer] != '\n' && buffer[indexBuffer] && flagRead && flagRelTypeRead) {
+                relType[indexType] = buffer[indexBuffer];
+                indexType++;
+            }
+        }
+        indexBuffer++;
+    }
+
+    relSrc[indexSrc]='\0';
+    relDst[indexDst]='\0';
+    relType[indexType]='\0';
+
+    }
+
 /**
  * Add rel function
  * @param nameRelation the name for the relation
  */
-void addRelation(char * nameRelation){
-
+void addRelation(char* relSrc,char* relDst, char* relType){
+    //TODO check if the relation already exists
+    //TODO check if the entities exists
 }
+
+void addRelationTypeLeaderboard(leaderboard myLeaderboard, char*nameRelation){
+    typeRelationLeaderboard* current=NULL;
+    typeRelationLeaderboard* previous=NULL;
+    typeRelationLeaderboard* newType=NULL;
+    if(myLeaderboard==NULL){
+        newType= malloc(sizeof(typeRelationLeaderboard));
+        newType->nameTypeRelation=nameRelation;
+        newType->winCount=1;
+        newType->next=NULL;
+    } else{
+
+    }
+}
+//Add node relation in correct place
+void addRelationLeaderBoard();
+void addRelationTypeToEntity(char* relSrc, char*relDst);
+
 
 
 
