@@ -8,57 +8,53 @@
 #define BUFFERMAXDIM 1000
 #define DIMENTITYHASHTABLE 1024
 
-//GLOBAL VARIABLEs AND PROTOTYPES
-void readingInput();
-void performingAlgorithm();
-char command[];
-char instructionOne[];
-char instructionTwo[];
+//GLOBAL VARIABLES AND PROTOTYPES
 
-typedef struct n{
-    char * name;
-    struct n*  nxt;
-}node;
-
-/**
- * Atomic relation with source and destination, following the arrow
- */
 typedef struct r{
-    node* src;
-    node* dst;
-    struct r*nxt;
+    char* nameOtherEntity;
+    struct r* next;
 }relation;
 
-/**
- * Node of the typeOfRelationList
- */
-typedef struct{
-    relation* firstRelationIn;
-    relation* firstRelationOut;
-}typeOfRelation;
-/**
- * Entity with name and pointer to the next entity in case of conflict
- */
-typedef struct e{
-    node* entityInfo;
-    typeOfRelation* typeOfRelationVector;
+typedef struct trn{
+    char* nameTypeRelation;
+    int counterIn; //TODO I can use a  pointer here
+    struct trn* next;
+
+}typeRelationNormal;
+
+typedef struct e{  //TODO I can remove this intermediate structure
+    char* name;
+    typeRelationNormal* relationsType;
 }entity;
 
+entity* entityVector[DIMENTITYHASHTABLE];
+
+int entityVectorLenght = DIMENTITYHASHTABLE;
+
+typedef struct elb{
+    char* name;
+    int countIn;
+    struct elb* next;
+}entityLeaderBoard;
+
+typedef struct trlb{
+    char* nameTypeRelation;
+    int winCount;
+    struct trlb* next;
+}typeRelationLeaderboard;
+
+typedef typeRelationLeaderboard* leaderboard;
 
 
-typedef struct {
 
-}entityBoxHashed;
 
 char * buffer;
 
 void addEntity(char* nameEntity);
 void deleteEntity(char* nameEntity);
 void findName(char* stringLocation, char* buffer);
+void createEntityStructure(entity** pointerToModify, char* entityName );
 
-//HashTable structures
-
-entityBoxHashed*  entityHashTable[DIMENTITYHASHTABLE];
 
 
 
@@ -99,21 +95,16 @@ int main() {
     }
     return 0;
 
-
-
-
-
-
-
 }
 
 //Other functions
 
-//TODO functiion that takes a global variable an retaes an hash table;
-//    void hashCreate(){
-//
-//    }
-
+//GENERAL FUNCTIONS
+/**
+ * Support function used to collect info by input
+ * @param stringLocation the memory portion where the buffer is saved
+ * @param buffer the buffer conten
+ */
 void findName(char* stringLocation, char* buffer){
     int indexBuffer=0;
     int indexMemory=0;
@@ -131,8 +122,65 @@ void findName(char* stringLocation, char* buffer){
     stringLocation[indexMemory]='\0';
 }
 
-//TODO function used to hash a string
-//void hashValue(char* valueToInsert, hashTableEntity);
+/**
+ * Function used to hash all the values to
+ * @param valueToInsert the string I want to hash
+ * @param hashTableLenght the hashTable lenght
+ * @return the index in the hash table for the current value
+ */
+int hashValue(char* valueToInsert, int hashTableLenght){
+    int position=0;
+    int result=0;
+    while(valueToInsert[position]!='\0'){
+        result+= valueToInsert[position]*position;
+        position++;
+    }
+    result = result%hashTableLenght;
+    return result;
+}
+
+//ADD ENTITY FUNCTIONS
+
+/**
+ * Add entity function
+ * @param nameEntity the name of the entity I want to add
+ */
+void addEntity(char* nameEntity){
+    int hashedIndex= hashValue(nameEntity,entityVectorLenght);
+    if(entityVector[hashedIndex]==NULL){
+        createEntityStructure(&entityVector[hashedIndex], nameEntity);
+    }
+    else{
+        //solveConflicts();
+    }
+}
+
+/**
+ * Function that creates the entity struct vector
+ *
+ * @param pointerToModify the the hashindex-cell where I want to save a pointer to the relative entity structure
+ * @param entityName
+ */
+void createEntityStructure(entity** pointerToModify, char* entityName){
+    entity* newEntity= (entity*)malloc(sizeof(entity));
+    newEntity->name= entityName;
+    newEntity->relationsType=NULL;
+    *pointerToModify=newEntity;
+
+}
+
+
+//ADDREL FUNCTIONS
+/**
+ * Add rel function
+ * @param nameRelation the name for the relation
+ */
+void addRelation(char * nameRelation){
+
+}
+
+
+
 
 //TODO function used to delete an entity
 void deleteEntity(char* nameEntity){
@@ -141,14 +189,6 @@ void deleteEntity(char* nameEntity){
 
 //TODO function used to delete a relation
 void deleteRelation(relation* nameRelation);
-
-//TODO function used to add a relation
-void addRelation(char * nameRelation);
-
-//TODO  function used to add an entity
-void addEntity(char* nameEntity){
-
-}
 
 //TODO function used to explore the leaderboard and extract the winners
 void report();
