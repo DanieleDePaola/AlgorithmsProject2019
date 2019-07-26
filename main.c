@@ -15,6 +15,7 @@
 
 typedef struct r{
     char* nameOtherEntity;
+    struct r* otherRelation;
     struct r* next;
 }relation;
 
@@ -38,13 +39,13 @@ int entityVectorLenght = DIMENTITYHASHTABLE;
 
 typedef struct elb{
     char* name;
-    int countIn;
+    int* countIn;
     struct elb* next;
 }entityLeaderBoard;
 
 typedef struct trlb{
     char* nameTypeRelation;
-    int winCount;
+    int* winCount;
     entityLeaderBoard* entities;
     struct trlb* next;
 }typeRelationLeaderboard;
@@ -62,14 +63,14 @@ void deleteEntity(char* nameEntity);
 char* findEntityName(char* buffer);
 void createEntityStructure(entity** pointerToModify, char* entityName );
 
-void defineRelationFields( char** relSrc, char** relDst, char** relType,char* buffer);
+void defineRelationFields( char**relSrcFinal, char**relDstFinal, char**relTypeFinal,char* buffer);
 void addRelation(char *relSrc,char *relDst, char* relType);
 
-leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char *nameRelation);
-void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, int competitorCountsIn);
+leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char *nameRelation, int* countIn);
+void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, int* competitorCountsIn);
 typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationTypes, char* nameRelation);
-void insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst);
-int addRelationToEntity(char* relSrc, char*relDst, char* relType);
+relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst);
+int* addRelationToEntity(char* relSrc, char*relDst, char* relType);
 
 
 
@@ -95,6 +96,7 @@ int main() {
         if(!strcmp(command, "addent")) {
             entityName=findEntityName(buffer);
             addEntity(entityName);
+            entityName=NULL;
         }
         else if (!strcmp(command, "addrel")) {
             char* relSrc=NULL;
@@ -195,7 +197,7 @@ void createEntityStructure(entity** pointerToModify, char* entityName){
 
 }
 
-
+//_______________________________________________________________________________________________
 //ADDREL FUNCTIONS
 
 /**
@@ -265,16 +267,12 @@ void addRelation(char* relSrc,char* relDst, char* relType){
     //check if the entity exists
     if(entityVector[hashValue(relSrc,entityVectorLenght)]!=NULL&&entityVector[hashValue(relDst,entityVectorLenght)]!=NULL){
         //check if the relation already exists inside the following function
-        returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType);
-
-        int counterIn=addRelationToEntity(relSrc, relDst, relType);
+        int* counterIn=addRelationToEntity(relSrc, relDst, relType);
+        returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,counterIn);
         addRelationLeaderBoard(returnType,relDst,counterIn);
 
 
     }
-
-
-
 }
 
 /**
@@ -285,7 +283,7 @@ void addRelation(char* relSrc,char* relDst, char* relType){
  * @param nameRelation the type of relation I want to add
  * @return the pointer to the relation type node
  */
-leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation){
+leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation,int* counterIn){
     typeRelationLeaderboard* current=NULL;
     typeRelationLeaderboard* previous=NULL;
     typeRelationLeaderboard* newType=NULL;
@@ -293,7 +291,7 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
     if(*myLeaderboard==NULL){
         newType= malloc(sizeof(typeRelationLeaderboard));
         newType->nameTypeRelation=nameRelation;
-        newType->winCount=1;
+        newType->winCount=counterIn;
         newType->next=NULL;
         newType->entities=NULL;
         *myLeaderboard=newType;
@@ -302,6 +300,7 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
         previous=*myLeaderboard;
         current=*myLeaderboard;
         newType= malloc(sizeof(typeRelationLeaderboard));
+        newType->winCount=counterIn;
         newType->nameTypeRelation=nameRelation;
         newType->entities=NULL;
         newType->next=NULL;
@@ -332,14 +331,14 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
  * @param competitorName
  * @param competitorCountsIn
  */
-void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, int competitorCountsIn){
+void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, int* competitorCountsIn){
     entityLeaderBoard* newCompetitor;
     entityLeaderBoard* current;
     entityLeaderBoard* previous;
     if(myTypeRelation->entities==NULL){
         newCompetitor=malloc(sizeof(entityLeaderBoard));
         newCompetitor->name=competitorName;
-        newCompetitor->countIn=1;
+        newCompetitor->countIn=competitorCountsIn;
         newCompetitor->next=NULL;
         myTypeRelation->entities=newCompetitor;
     } else{
@@ -366,16 +365,20 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
     }
 }
 
-int addRelationToEntity(char* relSrc, char*relDst, char* relType){
+int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
     entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
     entity* dstEntity = entityVector[hashValue(relDst, entityVectorLenght)];
     typeRelationNormal* relationCurrentTypeSrc = insertTypeRelationToEntity(&srcEntity->relationsType, relType);
     typeRelationNormal* relationCurrentTypeDst = insertTypeRelationToEntity(&dstEntity->relationsType, relType);
+    relation* relOut;
+    relation* relIn;
 
-    insertRelationNode(&relationCurrentTypeSrc->relationOut, 0, relSrc, relDst);
-    insertRelationNode(&relationCurrentTypeDst->relationIn, 1, relSrc, relDst);
+    relIn = insertRelationNode(&relationCurrentTypeSrc->relationOut, 1, relSrc, relDst);  //relOut relazione uscente
+    relOut = insertRelationNode(&relationCurrentTypeDst->relationIn, 0, relSrc, relDst); //relInr relazione entrante
+    relOut->otherRelation=relIn;
+    relIn->otherRelation=relOut;
     relationCurrentTypeDst->counterIn++;
-    return relationCurrentTypeDst->counterIn;
+    return  &relationCurrentTypeDst->counterIn;
 
 
 
@@ -390,20 +393,25 @@ int addRelationToEntity(char* relSrc, char*relDst, char* relType){
  * @param relSrc relation source entity
  * @param relDst relation destination entity
  */
-void insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst){
+relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst){
     relation* current;
     relation* previous;
     relation* newRelation;
+    relation* returnRelation;
 
     if(*listOfRelationsInorOut==NULL){
         newRelation= (relation*)malloc(sizeof(relation));
         if(!inOrOut)
-            newRelation->nameOtherEntity=relSrc;//TODO CHANGE THIS IN POINTER
+            newRelation->nameOtherEntity=relSrc;
         else
             newRelation->nameOtherEntity=relDst;
 
         newRelation->next=NULL;
+        *listOfRelationsInorOut=newRelation;
+        returnRelation=newRelation;
     }
+
+
     else{
         current=*listOfRelationsInorOut;
         previous=current;
@@ -412,29 +420,33 @@ void insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* rel
                 previous=current;
                 current=current->next;
             }
-            if(strcmp(relSrc, current->nameOtherEntity)==0)return;
+            if(strcmp(relSrc, current->nameOtherEntity)==0)return current;
 
             newRelation= (relation*)malloc(sizeof(relation));
-            newRelation->nameOtherEntity=relSrc;//TODO CHANGE THIS IN POINTER
+            newRelation->nameOtherEntity=relSrc;
             newRelation->next=current;
             previous->next=newRelation;
-
         }
+
+
         else{
             while(strcmp(relDst, current->nameOtherEntity)<0){
                 previous=current;
                 current=current->next;
             }
 
-            if(strcmp(relDst, current->nameOtherEntity)==0)return;
+            if(strcmp(relDst, current->nameOtherEntity)==0)return current;
 
             newRelation= (relation*)malloc(sizeof(relation));
-            newRelation->nameOtherEntity=relSrc;//TODO CHANGE THIS IN POINTER
+            newRelation->nameOtherEntity=relDst;//TODO CHANGE THIS IN POINTER
             newRelation->next=current;
             previous->next=newRelation;
-        }
 
+
+        }
+        returnRelation = previous->next;
     }
+    return returnRelation;
 }
 
 /**
