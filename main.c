@@ -6,7 +6,7 @@
 
 #define HASHDEFAULTDIM 2048
 #define BUFFERMAXDIM 1000
-#define DIMENTITYHASHTABLE 1024
+#define DIMENTITYHASHTABLE 8192
 #define DIMENTITYNAME 100
 #define DIMCOMMAND 10
 #define FIELDSINADDREL 10
@@ -16,14 +16,35 @@
 typedef struct r{
     char* nameOtherEntity;
     struct r* otherRelation;
+    struct r* previous;
     struct r* next;
 }relation;
+
+typedef struct elb{
+    char* name;
+    int* countIn;
+    struct elb* previous;
+    struct elb* next;
+}entityLeaderBoard;
+
+typedef struct trlb{
+    char* nameTypeRelation;
+    int winCount;
+    entityLeaderBoard* entities;
+    struct trlb* next;
+}typeRelationLeaderboard;
+
+typedef typeRelationLeaderboard* leaderboard;
+leaderboard myLeaderBoard=NULL;
 
 typedef struct trn{
     char* nameTypeRelation;
     int counterIn; //TODO I can use a  pointer here
     relation* relationIn;
     relation* relationOut;
+    entityLeaderBoard* leaderboardPosition;
+    typeRelationLeaderboard* typeInLeaderBoard;
+
     struct trn* next;
 
 }typeRelationNormal;
@@ -37,22 +58,13 @@ entity* entityVector[DIMENTITYHASHTABLE];
 
 int entityVectorLenght = DIMENTITYHASHTABLE;
 
-typedef struct elb{
-    char* name;
-    int* countIn;
-    struct elb* next;
-}entityLeaderBoard;
 
-typedef struct trlb{
-    char* nameTypeRelation;
-    int* winCount;
-    entityLeaderBoard* entities;
-    struct trlb* next;
-}typeRelationLeaderboard;
 
-typedef typeRelationLeaderboard* leaderboard;
-leaderboard myLeaderBoard=NULL;
 
+
+
+entityLeaderBoard* memoryTypeLeaderboard;
+typeRelationNormal* memoryTypeEntity;
 
 
 
@@ -66,11 +78,17 @@ void createEntityStructure(entity** pointerToModify, char* entityName );
 void defineRelationFields( char**relSrcFinal, char**relDstFinal, char**relTypeFinal,char* buffer);
 void addRelation(char *relSrc,char *relDst, char* relType);
 
-leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char *nameRelation, int* countIn);
+leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char *nameRelation, int counterIn);
 void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, int* competitorCountsIn);
 typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationTypes, char* nameRelation);
 relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst);
 int* addRelationToEntity(char* relSrc, char*relDst, char* relType);
+
+void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode, typeRelationNormal*currentTypeRelation);
+void report();
+void deleteRelation(char* relSrc, char* relDst, char* relType);
+int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead);
+
 
 
 
@@ -89,6 +107,9 @@ int main() {
     char* buffer = malloc(BUFFERMAXDIM);
     char* command = malloc(DIMCOMMAND);
     char* entityName=NULL;
+    char* relSrc=NULL;
+    char* relDst=NULL;
+    char* relType=NULL;
 
     while(fgets(buffer,BUFFERMAXDIM, stdin)){
 
@@ -99,9 +120,7 @@ int main() {
             entityName=NULL;
         }
         else if (!strcmp(command, "addrel")) {
-            char* relSrc=NULL;
-            char* relDst=NULL;
-            char* relType=NULL;
+
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             addRelation(relSrc, relDst, relType);
         }
@@ -109,11 +128,12 @@ int main() {
             deleteEntity(entityName);
         }
         else if (!strcmp(command, "report")) {
-            deleteEntity(entityName);
+            report();
         }
 
         else if (!strcmp(command, "delrel")) {
-            deleteEntity(entityName);
+            defineRelationFields(&relSrc, &relDst, &relType, buffer);
+            deleteRelation(relSrc, relDst, relType);
         }
 
     }
@@ -256,22 +276,25 @@ void defineRelationFields( char** relSrcFinal, char** relDstFinal, char** relTyp
     }
 
 /**
- * Add rel function
+ * Add rel function, creates also link between the single entity relation node and the node in ht leaderboard
+ * and between the type of leaderboard and the type of entity
+ *
  * @param nameRelation the name for the relation
  */
 void addRelation(char* relSrc,char* relDst, char* relType){
-
-    //TODO add pointers in the relation nodes to delete faster
-    typeRelationLeaderboard* returnType=NULL;
 
     //check if the entity exists
     if(entityVector[hashValue(relSrc,entityVectorLenght)]!=NULL&&entityVector[hashValue(relDst,entityVectorLenght)]!=NULL){
         //check if the relation already exists inside the following function
         int* counterIn=addRelationToEntity(relSrc, relDst, relType);
-        returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,counterIn);
-        addRelationLeaderBoard(returnType,relDst,counterIn);
+        typeRelationLeaderboard* returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,*counterIn);
+        if(*counterIn>=returnType->winCount){
+            addRelationLeaderBoard(returnType,relDst,counterIn);//TODO this can't always happen, I need an if on it
+        }
 
-
+        memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
+                                                                     //Player is in position and in which position
+        memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
     }
 }
 
@@ -283,7 +306,7 @@ void addRelation(char* relSrc,char* relDst, char* relType){
  * @param nameRelation the type of relation I want to add
  * @return the pointer to the relation type node
  */
-leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation,int* counterIn){
+leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation,int counterIn){
     typeRelationLeaderboard* current=NULL;
     typeRelationLeaderboard* previous=NULL;
     typeRelationLeaderboard* newType=NULL;
@@ -340,6 +363,7 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
         newCompetitor->name=competitorName;
         newCompetitor->countIn=competitorCountsIn;
         newCompetitor->next=NULL;
+        newCompetitor->previous=NULL;
         myTypeRelation->entities=newCompetitor;
     } else{
         current=myTypeRelation->entities;
@@ -350,21 +374,31 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
             current=current->next;
         }
         if(strcmp(competitorName, current->name)==0){ //when entity is already inside the leaderboard
-            current->countIn++;
-            if(myTypeRelation->winCount<current->countIn)myTypeRelation->winCount=current->countIn;
+            //current->countIn++; //TODO CHECK IF IS CORRECT ERROR
+            if(myTypeRelation->winCount<*current->countIn)myTypeRelation->winCount=*current->countIn;
             return;
         } else{//when the entity is not in the leaderboard
             newCompetitor=malloc(sizeof(entityLeaderBoard));
             newCompetitor->name=competitorName;
             newCompetitor->countIn=competitorCountsIn;
-            newCompetitor->next=NULL;
 
             newCompetitor->next=current;
+            newCompetitor->previous=previous;
             previous->next=newCompetitor;
         }
     }
+    memoryTypeLeaderboard=newCompetitor;
 }
 
+/**
+ * This function adds the relations to both the entities and connects them with a pointer so that
+ * the delent and delrel procedure could be simplified
+ *
+ * @param relSrc relation source entity
+ * @param relDst relation destination entity
+ * @param relType relation type
+ * @return the counter of in relations in the destination entity
+ */
 int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
     entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
     entity* dstEntity = entityVector[hashValue(relDst, entityVectorLenght)];
@@ -372,6 +406,9 @@ int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
     typeRelationNormal* relationCurrentTypeDst = insertTypeRelationToEntity(&dstEntity->relationsType, relType);
     relation* relOut;
     relation* relIn;
+
+    memoryTypeEntity=relationCurrentTypeDst;
+
 
     relIn = insertRelationNode(&relationCurrentTypeSrc->relationOut, 1, relSrc, relDst);  //relOut relazione uscente
     relOut = insertRelationNode(&relationCurrentTypeDst->relationIn, 0, relSrc, relDst); //relInr relazione entrante
@@ -407,6 +444,7 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
             newRelation->nameOtherEntity=relDst;
 
         newRelation->next=NULL;
+        newRelation->previous=NULL;
         *listOfRelationsInorOut=newRelation;
         returnRelation=newRelation;
     }
@@ -425,6 +463,7 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
             newRelation= (relation*)malloc(sizeof(relation));
             newRelation->nameOtherEntity=relSrc;
             newRelation->next=current;
+            newRelation->previous=previous;
             previous->next=newRelation;
         }
 
@@ -440,11 +479,12 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
             newRelation= (relation*)malloc(sizeof(relation));
             newRelation->nameOtherEntity=relDst;//TODO CHANGE THIS IN POINTER
             newRelation->next=current;
+            newRelation->previous=previous;
             previous->next=newRelation;
 
 
         }
-        returnRelation = previous->next;
+        returnRelation = newRelation;
     }
     return returnRelation;
 }
@@ -503,28 +543,200 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
 }
 
 
-
-
+//______________________________________________________________________________________________________________
+//DELREL FUNCTIONS
 
 //TODO function used to delete an entity
-void deleteEntity(char* nameEntity){
-    printf("Deleting entity");
+void deleteEntity(char* nameEntity) {
+    entity* entityToDelete = entityVector[hashValue(nameEntity, entityVectorLenght)];
+    typeRelationNormal* currentTypeRelation=entityToDelete->relationsType;
+
+    relation** RelationNodeIn=&currentTypeRelation->relationIn;//TO track the head of list
+    relation* currentRelationNodeIn=currentTypeRelation->relationIn;//to scan the list
+
+    relation** RelationNodeOut= &currentTypeRelation->relationOut;
+    relation* currentRelationNodeOut= currentTypeRelation->relationOut;
+
+    while (currentTypeRelation!=NULL){
+        while(currentRelationNodeIn!=NULL){
+            cleanSystemFromEntity(RelationNodeIn, currentRelationNodeIn ,currentTypeRelation);
+            currentRelationNodeIn=currentRelationNodeIn->next;
+        }
+
+        while(currentRelationNodeOut!=NULL){
+            cleanSystemFromEntity(RelationNodeOut, currentRelationNodeOut, currentTypeRelation);
+            currentRelationNodeOut=currentRelationNodeOut->next;
+        }
+        currentTypeRelation->counterIn=0;
+        currentTypeRelation=currentTypeRelation->next;
+    }
+
 }
 
-//TODO function used to delete a relation
-void deleteRelation(relation* nameRelation);
+/**
+ * It only clean the nodes linked to this relation, the main node will be cleaned in the calling function
+ *
+ * @param disappearingEntity the entity ehich connections must be cleaned
+ */
+void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode, typeRelationNormal*currentTypeRelation){
+    relation* current = currentRelationNode;
+    relation* next = current->next;
+    relation* previous = current->previous;
 
+    entityLeaderBoard* currentLeaderBoard=currentTypeRelation->leaderboardPosition;
+    entityLeaderBoard* previosLeaderBoard=currentLeaderBoard->previous;
+    entityLeaderBoard* nextLeaderBoard=currentLeaderBoard->next;
+
+    typeRelationLeaderboard* typeRelLeaderboard=currentTypeRelation->typeInLeaderBoard;
+
+
+
+    if(previous==NULL)
+        *headOfList=current->next;
+    else{
+        next->previous=previous;
+        previous->next=next;
+        free(current);
+    }
+
+    //deleteLeadeboardEntity
+
+    //if the entity node is the one with more in relations, I must work on the wincount
+    if(*currentTypeRelation->leaderboardPosition->countIn==typeRelLeaderboard->winCount){
+        int winCountMax=0;
+        previosLeaderBoard->next=nextLeaderBoard;
+        nextLeaderBoard->previous=previosLeaderBoard;
+
+        free(currentLeaderBoard);
+
+        typeRelLeaderboard->winCount = findNewWinCount(typeRelLeaderboard->entities); //head of list
+    }
+    else{
+
+        //if the node is in first position
+        if(previosLeaderBoard==NULL)typeRelLeaderboard->entities=currentLeaderBoard->next;
+        else{
+            nextLeaderBoard->previous=previosLeaderBoard;
+            previosLeaderBoard->next=nextLeaderBoard;
+        }
+        free(currentLeaderBoard);
+    }
+
+    //If the entities list is empty at the end of these operations I must set wincount to 1
+    if(typeRelLeaderboard->entities==NULL)typeRelLeaderboard->winCount=1;
+}
+
+/**
+ * function used to scan all the nodes in leaderboard after the winner (or one of them) has been deleted
+ * in order to find the right wincount
+ * @param currentLeaderBoardHead
+ * @return
+ */
+int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead){
+    int winCountMax=0;
+    if(currentLeaderBoardHead==NULL) winCountMax=1;
+
+    while(currentLeaderBoardHead!=NULL){
+        if(*currentLeaderBoardHead->countIn>winCountMax)winCountMax=*currentLeaderBoardHead->countIn;
+        currentLeaderBoardHead=currentLeaderBoardHead->next;
+    }
+
+    return winCountMax;
+}
+
+
+//___________________________________________________________________________________________________________________________________
+//DEL REL FUNCTIONS
+
+//TODO function used to delete a relation
+void deleteRelation(char* relSrc, char* relDst, char* relType){
+    entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
+    typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
+    relation* currentRelation=NULL;
+
+    while(currentRelTypeEnt!=NULL&&strcmp(relType, currentRelTypeEnt->nameTypeRelation)!=0){
+        currentRelTypeEnt=currentRelTypeEnt->next;
+    }
+
+    if(currentRelTypeEnt==NULL) return;//If the relation does not exists
+
+    currentRelation=currentRelTypeEnt->relationOut;
+    while(currentRelation!=NULL&&strcmp(currentRelation->nameOtherEntity, relDst)!=0){
+        currentRelation=currentRelation->next;
+    }
+    if(currentRelation==NULL)return;
+
+
+    if(currentRelation->previous==NULL){
+        currentRelTypeEnt->relationOut=currentRelation->next;
+    } else{
+        currentRelation->next->previous=currentRelation->previous;
+        currentRelation->previous->next=currentRelation->next;
+    }
+
+    //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
+    if(currentRelTypeEnt->leaderboardPosition!=NULL && currentRelTypeEnt->typeInLeaderBoard->winCount>currentRelTypeEnt->counterIn){
+        if(currentRelTypeEnt->leaderboardPosition->previous==NULL){
+            currentRelTypeEnt->typeInLeaderBoard->entities=currentRelTypeEnt->leaderboardPosition->next;
+            free(currentRelTypeEnt->leaderboardPosition);
+        }
+        else{
+            currentRelTypeEnt->leaderboardPosition->previous->next=currentRelTypeEnt->leaderboardPosition->next;
+            currentRelTypeEnt->leaderboardPosition->next->previous=currentRelTypeEnt->leaderboardPosition->previous;
+            free(currentRelTypeEnt->leaderboardPosition);
+        }
+    }
+
+    //Assign new win count only if the relation was the one that gave victory to that entity
+    if(currentRelTypeEnt->typeInLeaderBoard->winCount==currentRelTypeEnt->counterIn){
+        currentRelTypeEnt->typeInLeaderBoard->winCount=findNewWinCount(currentRelTypeEnt->typeInLeaderBoard->entities);
+    }
+    currentRelTypeEnt->counterIn--;
+
+
+    relation* dstRelation=currentRelation->otherRelation;
+    if(dstRelation->previous==NULL){
+        dstRelation->nameOtherEntity="Ruopp";
+    } else{
+        dstRelation->next->previous=dstRelation->previous;
+        dstRelation->previous->next=dstRelation->next;
+    }
+
+
+}
+
+//___________________________________________________________________________________________________________________________________
+//REPORT FUNCTIONS
 //TODO function used to explore the leaderboard and extract the winners
-void report();
+void report(){
+    typeRelationLeaderboard* currentTypeLb=myLeaderBoard;
+    entityLeaderBoard* currentEntityLb=NULL;
+
+    while(currentTypeLb!=NULL){
+        if(currentTypeLb->entities==NULL)continue;
+
+        printf("%c", '"');
+        printf("%s", currentTypeLb->nameTypeRelation);
+        printf("%c ", '"');
+
+        currentEntityLb=currentTypeLb->entities;
+        while (currentEntityLb!=NULL){
+            if(*currentEntityLb->countIn==currentTypeLb->winCount){
+                printf("%c", '"');
+                printf("%s", currentEntityLb->name);
+                printf("%c ", '"');
+            }
+            currentEntityLb=currentEntityLb->next;
+        }
+        printf("%d", currentTypeLb->winCount);
+        printf("%c", ';');
+        printf("\n");
+        currentTypeLb=currentTypeLb->next;
+    }
+}
+
+
+
 
 //TODO function used to perform a rehashing
 //void rehash(hashtableEntity);
-
-//TODO function used to insert an element at the edge of a list
-void listInsertHead();
-
-//TODO function used to delete a list Head
-void listDeleteHead();
-
-//TODO function used to find a winner in the leaderboard fo the single relation, it is used by report()
-//listName findWinnerRelation();
