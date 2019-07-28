@@ -31,6 +31,7 @@ typedef struct trlb{
     char* nameTypeRelation;
     int winCount;
     entityLeaderBoard* entities;
+    struct trlb* previous;
     struct trlb* next;
 }typeRelationLeaderboard;
 
@@ -125,6 +126,7 @@ int main() {
             addRelation(relSrc, relDst, relType);
         }
         else if (!strcmp(command, "delent")) {
+            entityName=findEntityName(buffer);
             deleteEntity(entityName);
         }
         else if (!strcmp(command, "report")) {
@@ -316,19 +318,15 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
         newType->nameTypeRelation=nameRelation;
         newType->winCount=counterIn;
         newType->next=NULL;
+        newType->previous=NULL;
         newType->entities=NULL;
         *myLeaderboard=newType;
         returnType=newType;
     } else{
         previous=*myLeaderboard;
         current=*myLeaderboard;
-        newType= malloc(sizeof(typeRelationLeaderboard));
-        newType->winCount=counterIn;
-        newType->nameTypeRelation=nameRelation;
-        newType->entities=NULL;
-        newType->next=NULL;
 
-        while(strcmp(nameRelation,current->nameTypeRelation)<0){
+        while(strcmp(nameRelation,current->nameTypeRelation)>0){
             previous=current; //TODO and if current==NULL?
             current=current->next;
         }
@@ -339,7 +337,12 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
             return current;
         }
 
+        newType= malloc(sizeof(typeRelationLeaderboard));
+        newType->winCount=counterIn;
+        newType->nameTypeRelation=nameRelation;
+        newType->entities=NULL;
         newType->next=current;
+        newType->previous=previous;
         previous->next=newType;
         returnType=newType;
         newType=NULL;
@@ -369,11 +372,11 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
         current=myTypeRelation->entities;
         previous=current;
 
-        while(strcmp(competitorName,current->name)<0){
+        while(current!=NULL&&strcmp(competitorName,current->name)>0){
             previous=current;
             current=current->next;
         }
-        if(strcmp(competitorName, current->name)==0){ //when entity is already inside the leaderboard
+        if(current!=NULL&&strcmp(competitorName, current->name)==0){ //when entity is already inside the leaderboard
             //current->countIn++; //TODO CHECK IF IS CORRECT ERROR
             if(myTypeRelation->winCount<*current->countIn)myTypeRelation->winCount=*current->countIn;
             return;
@@ -454,11 +457,11 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
         current=*listOfRelationsInorOut;
         previous=current;
         if(!inOrOut){
-            while (strcmp(relSrc, current->nameOtherEntity)<0){
+            while (current!=NULL&&strcmp(relSrc, current->nameOtherEntity)>0){
                 previous=current;
                 current=current->next;
             }
-            if(strcmp(relSrc, current->nameOtherEntity)==0)return current;
+            if(current!=NULL&&strcmp(relSrc, current->nameOtherEntity)==0)return current;
 
             newRelation= (relation*)malloc(sizeof(relation));
             newRelation->nameOtherEntity=relSrc;
@@ -469,12 +472,12 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
 
 
         else{
-            while(strcmp(relDst, current->nameOtherEntity)<0){
+            while(current!=NULL&&strcmp(relDst, current->nameOtherEntity)>0){
                 previous=current;
                 current=current->next;
             }
 
-            if(strcmp(relDst, current->nameOtherEntity)==0)return current;
+            if(current!=NULL&&strcmp(relDst, current->nameOtherEntity)==0)return current;
 
             newRelation= (relation*)malloc(sizeof(relation));
             newRelation->nameOtherEntity=relDst;//TODO CHANGE THIS IN POINTER
@@ -571,6 +574,8 @@ void deleteEntity(char* nameEntity) {
         currentTypeRelation=currentTypeRelation->next;
     }
 
+    printf("---d----- end delrel");
+
 }
 
 /**
@@ -591,23 +596,40 @@ void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode,
 
 
 
-    if(previous==NULL)
-        *headOfList=current->next;
-    else{
+    if(previous==NULL) {
+        *headOfList = current->next;
+        free(current);
+        current->previous=NULL;
+        current->nameOtherEntity=NULL;
+        current->next=NULL;
+        current->otherRelation=NULL;
+
+    }else{
         next->previous=previous;
         previous->next=next;
         free(current);
+        current->previous=NULL;
+        current->nameOtherEntity=NULL;
+        current->next=NULL;
+        current->otherRelation=NULL;
     }
 
     //deleteLeadeboardEntity
 
-    //if the entity node is the one with more in relations, I must work on the wincount
+    //if the entity node is the one with more relations, I must work on the wincount
     if(*currentTypeRelation->leaderboardPosition->countIn==typeRelLeaderboard->winCount){
         int winCountMax=0;
         previosLeaderBoard->next=nextLeaderBoard;
-        nextLeaderBoard->previous=previosLeaderBoard;
+        if(nextLeaderBoard!=NULL)nextLeaderBoard->previous=previosLeaderBoard;
+
+        currentLeaderBoard->next=NULL;
+        currentLeaderBoard->previous=NULL;
+        currentLeaderBoard->name=NULL;
+        currentLeaderBoard->countIn=NULL;
+        currentTypeRelation->leaderboardPosition=NULL;
 
         free(currentLeaderBoard);
+
 
         typeRelLeaderboard->winCount = findNewWinCount(typeRelLeaderboard->entities); //head of list
     }
@@ -712,8 +734,12 @@ void report(){
     typeRelationLeaderboard* currentTypeLb=myLeaderBoard;
     entityLeaderBoard* currentEntityLb=NULL;
 
+    if(currentTypeLb==NULL){
+        printf("none");
+        printf("\n");
+    }
     while(currentTypeLb!=NULL){
-        if(currentTypeLb->entities==NULL)continue;
+        if(currentTypeLb->entities==NULL)continue; //if type relation is empty
 
         printf("%c", '"');
         printf("%s", currentTypeLb->nameTypeRelation);
