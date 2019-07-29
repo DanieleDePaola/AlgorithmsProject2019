@@ -1,9 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ProgettoApi2019.dir/main.c.obj"
+  "CMakeFiles/ProgettoApi2019.dir/main.c.o"
   "ProgettoApi2019.pdb"
-  "ProgettoApi2019.exe"
-  "ProgettoApi2019.exe.manifest"
-  "libProgettoApi2019.dll.a"
+  "ProgettoApi2019"
 )
 
 # Per-language clean rules from dependency scanning.

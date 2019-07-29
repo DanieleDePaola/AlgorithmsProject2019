@@ -9,5 +9,8 @@ addrel "jack" "daniele" "amico_di"
 addrel "gianluca" "daniele" "amico_di"
 addrel "invo" "jack" "amico_di"
 addrel "gianluca" "jack" "amico_di"
+delrel "gianluca" "jack" "amico_di"
+delrel "invo" "jack" "amico_di"
 delent "jack"
 report
+end

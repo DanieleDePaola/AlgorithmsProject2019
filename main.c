@@ -88,6 +88,9 @@ int* addRelationToEntity(char* relSrc, char*relDst, char* relType);
 void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode, typeRelationNormal*currentTypeRelation);
 void report();
 void deleteRelation(char* relSrc, char* relDst, char* relType);
+relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst);
+void deleteRelationInDst(relation* dstNode,char* relType, typeRelationNormal* relationTypesEntityDst);
+
 int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead);
 
 
@@ -137,6 +140,7 @@ int main() {
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             deleteRelation(relSrc, relDst, relType);
         }
+        else if (!strcmp(command, "end"))break;
 
     }
     return 0;
@@ -561,20 +565,24 @@ void deleteEntity(char* nameEntity) {
     relation* currentRelationNodeOut= currentTypeRelation->relationOut;
 
     while (currentTypeRelation!=NULL){
+
+        //Clean all the relation occurrencies in other entities and in leaderboard
         while(currentRelationNodeIn!=NULL){
             cleanSystemFromEntity(RelationNodeIn, currentRelationNodeIn ,currentTypeRelation);
-            currentRelationNodeIn=currentRelationNodeIn->next;
+            currentRelationNodeIn=currentRelationNodeIn->next;  //TODO Change this with a free or something
+
         }
 
+        //Clean all the out relation
         while(currentRelationNodeOut!=NULL){
             cleanSystemFromEntity(RelationNodeOut, currentRelationNodeOut, currentTypeRelation);
-            currentRelationNodeOut=currentRelationNodeOut->next;
+            currentRelationNodeOut=currentRelationNodeOut->next; //TODO change this with a free or something
         }
         currentTypeRelation->counterIn=0;
         currentTypeRelation=currentTypeRelation->next;
     }
 
-    printf("---d----- end delrel");
+
 
 }
 
@@ -593,8 +601,6 @@ void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode,
     entityLeaderBoard* nextLeaderBoard=currentLeaderBoard->next;
 
     typeRelationLeaderboard* typeRelLeaderboard=currentTypeRelation->typeInLeaderBoard;
-
-
 
     if(previous==NULL) {
         *headOfList = current->next;
@@ -630,6 +636,8 @@ void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode,
 
         free(currentLeaderBoard);
 
+        currentTypeRelation->leaderboardPosition=NULL;
+
 
         typeRelLeaderboard->winCount = findNewWinCount(typeRelLeaderboard->entities); //head of list
     }
@@ -645,7 +653,8 @@ void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode,
     }
 
     //If the entities list is empty at the end of these operations I must set wincount to 1
-    if(typeRelLeaderboard->entities==NULL)typeRelLeaderboard->winCount=1;
+    if(typeRelLeaderboard->entities==NULL)
+        typeRelLeaderboard->winCount=1;
 }
 
 /**
@@ -670,25 +679,53 @@ int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead){
 //___________________________________________________________________________________________________________________________________
 //DEL REL FUNCTIONS
 
-//TODO function used to delete a relation
+/**
+ * The function deletes the source and destination node for the relation, when the destination
+ * relation node is deleted, the leaderboard is updated
+ * @param relSrc the name of source entity
+ * @param relDst the name of destinatio entity
+ * @param relType the name of the relation
+ */
 void deleteRelation(char* relSrc, char* relDst, char* relType){
     entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
+    entity* dstEntity = entityVector[hashValue(relDst,entityVectorLenght)]; //TODO this could drain a lot of time
     typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
     relation* currentRelation=NULL;
+    relation* dstNode; //Destination node, return value of function
+
+    //TODO CHECK IF THE RELATION IS DELETED IN DST
+
+    //I delete the relation node from the relation source entity
+    dstNode=deleteRelationInSrc(srcEntity, relType, relDst);
+
+    if(dstNode==NULL)
+        return; //No relation found
+
+    //I delete the relation node from the relation  dest entity and manage the leaderboard
+    deleteRelationInDst(dstNode,relType,dstEntity->relationsType);
+
+    printf("---d----- end delrel");
+}
+
+relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
+    typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
+    relation* currentRelation=NULL;//Source relation node, deleted at the end of function
+    relation* dstNode; //Destination node, return value of function
 
     while(currentRelTypeEnt!=NULL&&strcmp(relType, currentRelTypeEnt->nameTypeRelation)!=0){
         currentRelTypeEnt=currentRelTypeEnt->next;
     }
 
-    if(currentRelTypeEnt==NULL) return;//If the relation does not exists
+    if(currentRelTypeEnt==NULL) return NULL;//If the relation does not exists
 
     currentRelation=currentRelTypeEnt->relationOut;
     while(currentRelation!=NULL&&strcmp(currentRelation->nameOtherEntity, relDst)!=0){
         currentRelation=currentRelation->next;
     }
-    if(currentRelation==NULL)return;
+    if(currentRelation==NULL)return NULL;//if the relation does not exists
 
 
+    //I prepare the entity structure for the deletion of the relation
     if(currentRelation->previous==NULL){
         currentRelTypeEnt->relationOut=currentRelation->next;
     } else{
@@ -696,33 +733,59 @@ void deleteRelation(char* relSrc, char* relDst, char* relType){
         currentRelation->previous->next=currentRelation->next;
     }
 
+    dstNode=currentRelation->otherRelation;
+    currentRelation->otherRelation=NULL;
+    currentRelation->previous=NULL;
+    currentRelation->next=NULL;
+    currentRelation->nameOtherEntity=NULL;
+    free(currentRelation);
+
+    return dstNode;
+}
+
+void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* relationTypesEntityDst){
+    //I prepare the entity structure for the deletion of the relation
+
+    while(relationTypesEntityDst!=NULL&&strcmp(relType, relationTypesEntityDst->nameTypeRelation)!=0){
+        relationTypesEntityDst=relationTypesEntityDst->next;
+    }
+
+    if(relationTypesEntityDst==NULL) return ;//If the relation does not exists
+
+    if(dstNode->previous==NULL){
+        relationTypesEntityDst->relationIn=dstNode->next;
+    } else{
+        dstNode->next->previous=dstNode->previous;
+        dstNode->previous->next=dstNode->next;
+    }
+
+    dstNode->next=NULL;
+    dstNode->previous=NULL;
+    dstNode->nameOtherEntity=NULL;
+    dstNode->otherRelation=NULL;
+    free(dstNode);
+
+
+
     //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
-    if(currentRelTypeEnt->leaderboardPosition!=NULL && currentRelTypeEnt->typeInLeaderBoard->winCount>currentRelTypeEnt->counterIn){
-        if(currentRelTypeEnt->leaderboardPosition->previous==NULL){
-            currentRelTypeEnt->typeInLeaderBoard->entities=currentRelTypeEnt->leaderboardPosition->next;
-            free(currentRelTypeEnt->leaderboardPosition);
+    if(relationTypesEntityDst->leaderboardPosition!=NULL && relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
+        if(relationTypesEntityDst->leaderboardPosition->previous==NULL){
+            relationTypesEntityDst->typeInLeaderBoard->entities=relationTypesEntityDst->leaderboardPosition->next;
+            free(relationTypesEntityDst->leaderboardPosition);
         }
         else{
-            currentRelTypeEnt->leaderboardPosition->previous->next=currentRelTypeEnt->leaderboardPosition->next;
-            currentRelTypeEnt->leaderboardPosition->next->previous=currentRelTypeEnt->leaderboardPosition->previous;
-            free(currentRelTypeEnt->leaderboardPosition);
+            relationTypesEntityDst->leaderboardPosition->previous->next=relationTypesEntityDst->leaderboardPosition->next;
+            relationTypesEntityDst->leaderboardPosition->next->previous=relationTypesEntityDst->leaderboardPosition->previous;
+            free(relationTypesEntityDst->leaderboardPosition);
         }
     }
 
     //Assign new win count only if the relation was the one that gave victory to that entity
-    if(currentRelTypeEnt->typeInLeaderBoard->winCount==currentRelTypeEnt->counterIn){
-        currentRelTypeEnt->typeInLeaderBoard->winCount=findNewWinCount(currentRelTypeEnt->typeInLeaderBoard->entities);
+    if(relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn){
+        relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
     }
-    currentRelTypeEnt->counterIn--;
+    relationTypesEntityDst->counterIn--;
 
-
-    relation* dstRelation=currentRelation->otherRelation;
-    if(dstRelation->previous==NULL){
-        dstRelation->nameOtherEntity="Ruopp";
-    } else{
-        dstRelation->next->previous=dstRelation->previous;
-        dstRelation->previous->next=dstRelation->next;
-    }
 
 
 }

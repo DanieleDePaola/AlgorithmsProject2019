@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/ddani/CLionProjects/ProgettoApi2019/main.c
+/mnt/c/Users/ddani/CLionProjects/ProgettoApi2019/main.c
 stdio.h
 -
 math.h
