@@ -581,9 +581,6 @@ void deleteEntity(char* nameEntity) {
         currentTypeRelation->counterIn=0;
         currentTypeRelation=currentTypeRelation->next;
     }
-
-
-
 }
 
 /**
@@ -704,7 +701,6 @@ void deleteRelation(char* relSrc, char* relDst, char* relType){
     //I delete the relation node from the relation  dest entity and manage the leaderboard
     deleteRelationInDst(dstNode,relType,dstEntity->relationsType);
 
-    printf("---d----- end delrel");
 }
 
 relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
@@ -715,7 +711,7 @@ relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
     while(currentRelTypeEnt!=NULL&&strcmp(relType, currentRelTypeEnt->nameTypeRelation)!=0){
         currentRelTypeEnt=currentRelTypeEnt->next;
     }
-
+    //TODO I CAN USE OPTIMIZATION, alfabetical order must be used to do it faster
     if(currentRelTypeEnt==NULL) return NULL;//If the relation does not exists
 
     currentRelation=currentRelTypeEnt->relationOut;
@@ -729,7 +725,7 @@ relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
     if(currentRelation->previous==NULL){
         currentRelTypeEnt->relationOut=currentRelation->next;
     } else{
-        currentRelation->next->previous=currentRelation->previous;
+        if(currentRelation->next!=NULL)currentRelation->next->previous=currentRelation->previous;
         currentRelation->previous->next=currentRelation->next;
     }
 
@@ -775,7 +771,7 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
         }
         else{
             relationTypesEntityDst->leaderboardPosition->previous->next=relationTypesEntityDst->leaderboardPosition->next;
-            relationTypesEntityDst->leaderboardPosition->next->previous=relationTypesEntityDst->leaderboardPosition->previous;
+            if(relationTypesEntityDst->leaderboardPosition->next!=NULL)relationTypesEntityDst->leaderboardPosition->next->previous=relationTypesEntityDst->leaderboardPosition->previous;
             free(relationTypesEntityDst->leaderboardPosition);
         }
     }
@@ -785,6 +781,8 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
         relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
     }
     relationTypesEntityDst->counterIn--;
+
+
 
 
 
@@ -798,12 +796,14 @@ void report(){
     entityLeaderBoard* currentEntityLb=NULL;
 
     if(currentTypeLb==NULL){
+        printf("\n");
         printf("none");
         printf("\n");
     }
     while(currentTypeLb!=NULL){
         if(currentTypeLb->entities==NULL)continue; //if type relation is empty
 
+        printf("\n");
         printf("%c", '"');
         printf("%s", currentTypeLb->nameTypeRelation);
         printf("%c ", '"');

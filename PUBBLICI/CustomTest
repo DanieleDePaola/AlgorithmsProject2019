@@ -11,6 +11,5 @@ addrel "invo" "jack" "amico_di"
 addrel "gianluca" "jack" "amico_di"
 delrel "gianluca" "jack" "amico_di"
 delrel "invo" "jack" "amico_di"
-delent "jack"
 report
 end
