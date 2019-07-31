@@ -84,6 +84,9 @@ void deleteRelation(char* relSrc, char* relDst, char* relType);
 relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst);
 void deleteRelationInDst(relation* dstNode,char* relType, typeRelationNormal* relationTypesEntityDst);
 int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead);
+relation* insertRelationNodeInSrc(relation** listOfRelationsInorOut, char* relSrc, char* relDst);
+relation* insertRelationNodeInDst(relation** listOfRelationsInorOut, char* relSrc, char* relDst);
+
 
 int main() {
     //Data acquisition
@@ -273,7 +276,10 @@ void addRelation(char* relSrc,char* relDst, char* relType){
     if(entityVector[hashValue(relSrc,entityVectorLenght)]!=NULL&&entityVector[hashValue(relDst,entityVectorLenght)]!=NULL){
         //check if the relation already exists inside the following function
         int* counterIn=addRelationToEntity(relSrc, relDst, relType);
+        if(counterIn==0)return; //If the relation has been added yet
+
         typeRelationLeaderboard* returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,*counterIn);
+
         if(*counterIn>=returnType->winCount){
             addRelationLeaderBoard(returnType,relDst,counterIn);//TODO this can't always happen, I need an if on it
         }
@@ -393,19 +399,24 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
 int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
     entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
     entity* dstEntity = entityVector[hashValue(relDst, entityVectorLenght)];
-    typeRelationNormal* relationCurrentTypeSrc = insertTypeRelationToEntity(&srcEntity->relationsType, relType);
-    typeRelationNormal* relationCurrentTypeDst = insertTypeRelationToEntity(&dstEntity->relationsType, relType);
     relation* relOut;
     relation* relIn;
 
+    typeRelationNormal* relationCurrentTypeSrc = insertTypeRelationToEntity(&srcEntity->relationsType, relType);
+    typeRelationNormal* relationCurrentTypeDst = insertTypeRelationToEntity(&dstEntity->relationsType, relType);
+
     memoryTypeEntity=relationCurrentTypeDst;
 
+    //TODO in case the relation already exists the program has problems
+    relIn = insertRelationNodeInSrc(&relationCurrentTypeSrc->relationOut, relSrc, relDst);//relOut relazione uscente
+    if(relIn==NULL) return 0;  //The relation exist yet
 
-    relIn = insertRelationNode(&relationCurrentTypeSrc->relationOut, 1, relSrc, relDst);  //relOut relazione uscente
-    relOut = insertRelationNode(&relationCurrentTypeDst->relationIn, 0, relSrc, relDst); //relInr relazione entrante
+    relOut = insertRelationNodeInDst(&relationCurrentTypeDst->relationIn, relSrc, relDst); //relInr relazione entrante
+
     relOut->otherRelation=relIn;
     relIn->otherRelation=relOut;
     relationCurrentTypeDst->counterIn++;
+
     return  &relationCurrentTypeDst->counterIn;
 
 
@@ -413,15 +424,10 @@ int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
 
 }
 
-/**
- * creates/inserts a new relaton node in the relation type list, alfabetical order is used
- *
- * @param listOfRelationsInorOut  list of out relation or in relation
- * @param inOrOut ==0 if in, 1 if out
- * @param relSrc relation source entity
- * @param relDst relation destination entity
- */
-relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst){
+
+
+
+relation* insertRelationNodeInSrc(relation** listOfRelationsInorOut, char* relSrc, char* relDst){
     relation* current;
     relation* previous;
     relation* newRelation;
@@ -429,10 +435,48 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
 
     if(*listOfRelationsInorOut==NULL){
         newRelation= (relation*)malloc(sizeof(relation));
-        if(!inOrOut)
-            newRelation->nameOtherEntity=relSrc;
-        else
-            newRelation->nameOtherEntity=relDst;
+        newRelation->nameOtherEntity=relDst;
+        newRelation->next=NULL;
+        newRelation->previous=NULL;
+        *listOfRelationsInorOut=newRelation;
+        returnRelation=newRelation;
+    }
+
+    else{
+        current=*listOfRelationsInorOut;
+        previous=NULL;
+
+
+        while(current!=NULL&&strcmp(relDst, current->nameOtherEntity)>0){
+            previous=current;
+            current=current->next;
+        }
+
+        if(current!=NULL&&strcmp(relDst, current->nameOtherEntity)==0) {
+            return NULL;  //TODO check if is correct, In case relation exists yet
+        }
+
+        newRelation= (relation*)malloc(sizeof(relation));
+        newRelation->nameOtherEntity=relDst;
+        newRelation->next=current;
+        newRelation->previous=previous;
+
+        if(previous!=NULL)previous->next=newRelation;
+        else *listOfRelationsInorOut=newRelation;
+
+        returnRelation = newRelation;
+    }
+    return returnRelation;
+}
+relation* insertRelationNodeInDst(relation** listOfRelationsInorOut, char* relSrc, char* relDst){
+    relation* current;
+    relation* previous;
+    relation* newRelation;
+    relation* returnRelation;
+
+    if(*listOfRelationsInorOut==NULL){
+        newRelation= (relation*)malloc(sizeof(relation));
+        newRelation->nameOtherEntity=relSrc;
 
         newRelation->next=NULL;
         newRelation->previous=NULL;
@@ -444,43 +488,28 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
     else{
         current=*listOfRelationsInorOut;
         previous=NULL;
-        if(!inOrOut){
-            while (current!=NULL&&strcmp(relSrc, current->nameOtherEntity)>0){
-                previous=current;
-                current=current->next;
-            }
-            if(current!=NULL&&strcmp(relSrc, current->nameOtherEntity)==0)return current;
-
-            newRelation= (relation*)malloc(sizeof(relation));
-            newRelation->nameOtherEntity=relSrc;
-            newRelation->next=current;
-            newRelation->previous=previous;
-            if(previous!=NULL)previous->next=newRelation;
-            else *listOfRelationsInorOut=newRelation;
-
+        //if(!inOrOut){
+        while (current!=NULL&&strcmp(relSrc, current->nameOtherEntity)>0){
+            previous=current;
+            current=current->next;
+        }
+        if(current!=NULL&&strcmp(relSrc, current->nameOtherEntity)==0){
+            return  current;
         }
 
 
-        else{
-            while(current!=NULL&&strcmp(relDst, current->nameOtherEntity)>0){
-                previous=current;
-                current=current->next;
-            }
+        newRelation= (relation*)malloc(sizeof(relation));
+        newRelation->nameOtherEntity=relSrc;
+        newRelation->next=current;
+        newRelation->previous=previous;
 
-            if(current!=NULL&&strcmp(relDst, current->nameOtherEntity)==0)return current;
+        if(previous!=NULL)previous->next=newRelation;
+        else *listOfRelationsInorOut=newRelation;
 
-            newRelation= (relation*)malloc(sizeof(relation));
-            newRelation->nameOtherEntity=relDst;//TODO CHANGE THIS IN POINTER
-            newRelation->next=current;
-            newRelation->previous=previous;
-            if(previous!=NULL)previous->next=newRelation;
-            else *listOfRelationsInorOut=newRelation;
-
-
-        }
         returnRelation = newRelation;
     }
     return returnRelation;
+
 }
 
 /**
@@ -536,6 +565,78 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
     return returnType;
 }
 
+/**
+ * creates/inserts a new relaton node in the relation type list, alfabetical order is used
+ *
+ * @param listOfRelationsInorOut  list of out relation or in relation
+ * @param inOrOut ==0 if in, 1 if out
+ * @param relSrc relation source entity
+ * @param relDst relation destination entity
+ */
+relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char* relSrc, char* relDst){
+    relation* current;
+    relation* previous;
+    relation* newRelation;
+    relation* returnRelation;
+
+    if(*listOfRelationsInorOut==NULL){
+        newRelation= (relation*)malloc(sizeof(relation));
+        if(!inOrOut)
+            newRelation->nameOtherEntity=relSrc;
+        else
+            newRelation->nameOtherEntity=relDst;
+
+        newRelation->next=NULL;
+        newRelation->previous=NULL;
+        *listOfRelationsInorOut=newRelation;
+        returnRelation=newRelation;
+    }
+
+
+    else{
+        current=*listOfRelationsInorOut;
+        previous=NULL;
+        if(!inOrOut){
+            while (current!=NULL&&strcmp(relSrc, current->nameOtherEntity)>0){
+                previous=current;
+                current=current->next;
+            }
+            if(current!=NULL&&strcmp(relSrc, current->nameOtherEntity)==0){
+                return  current;
+            }
+
+
+            newRelation= (relation*)malloc(sizeof(relation));
+            newRelation->nameOtherEntity=relSrc;
+            newRelation->next=current;
+            newRelation->previous=previous;
+            if(previous!=NULL)previous->next=newRelation;
+            else *listOfRelationsInorOut=newRelation;
+
+        }
+
+
+        else{
+            while(current!=NULL&&strcmp(relDst, current->nameOtherEntity)>0){
+                previous=current;
+                current=current->next;
+            }
+
+            if(current!=NULL&&strcmp(relDst, current->nameOtherEntity)==0)return current;
+
+            newRelation= (relation*)malloc(sizeof(relation));
+            newRelation->nameOtherEntity=relDst;//TODO CHANGE THIS IN POINTER
+            newRelation->next=current;
+            newRelation->previous=previous;
+            if(previous!=NULL)previous->next=newRelation;
+            else *listOfRelationsInorOut=newRelation;
+
+
+        }
+        returnRelation = newRelation;
+    }
+    return returnRelation;
+}
 
 //______________________________________________________________________________________________________________
 //DELREL FUNCTIONS
@@ -839,20 +940,25 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
 //
 //    //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
-//
-//    if(relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
-//        if(relationTypesEntityDst->leaderboardPosition->previous==NULL){
-//            relationTypesEntityDst->typeInLeaderBoard->entities=relationTypesEntityDst->leaderboardPosition->next;
-//            free(relationTypesEntityDst->leaderboardPosition);
-//            relationTypesEntityDst->leaderboardPosition=NULL;
-//        }
-//        else{
-//            relationTypesEntityDst->leaderboardPosition->previous->next=relationTypesEntityDst->leaderboardPosition->next;
-//            if(relationTypesEntityDst->leaderboardPosition->next!=NULL)relationTypesEntityDst->leaderboardPosition->next->previous=relationTypesEntityDst->leaderboardPosition->previous;
-//            free(relationTypesEntityDst->leaderboardPosition);
-//            relationTypesEntityDst->leaderboardPosition=NULL;
-//        }
-//    }
+
+    if(relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
+
+        entityLeaderBoard* entityLbToDelete=relationTypesEntityDst->leaderboardPosition; //leaderboard entity to delete
+        entityLeaderBoard* previousEntityLb=entityLbToDelete->previous;
+        entityLeaderBoard* nextEntityLb=entityLbToDelete->next;
+
+        if(previousEntityLb==NULL){
+            relationTypesEntityDst->typeInLeaderBoard->entities=nextEntityLb;
+            if(nextEntityLb->previous!=NULL)nextEntityLb->previous=NULL;
+            free(entityLbToDelete);
+        }
+        else{
+            previousEntityLb->next=entityLbToDelete->next;
+            if(nextEntityLb!=NULL)nextEntityLb->previous=previousEntityLb;
+            free(entityLbToDelete);
+        }
+    }
+
 
 
 
