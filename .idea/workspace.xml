@@ -13,44 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e251273-51ea-4a46-a259-46bf1ea6d7cd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/hashing" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PUBBLICI/CustomTest" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/CustomTest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/main.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ProgettoApi2019.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ProgettoApi2019.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ProgettoApi2019.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ProgettoApi2019.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -69,140 +34,130 @@
           <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.3" value="3" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="CustomTest" value="201" />
-          <entry key="c" value="24324" />
+          <entry key="CustomTest" value="269" />
+          <entry key="c" value="26822" />
           <entry key="in" value="1" />
-          <entry key="m" value="208" />
-          <entry key="txt" value="572" />
+          <entry key="m" value="244" />
+          <entry key="txt" value="626" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
           <entry key="Doxygen file" value="33" />
-          <entry key="ObjectiveC" value="24499" />
-          <entry key="PLAIN_TEXT" value="773" />
+          <entry key="ObjectiveC" value="27033" />
+          <entry key="PLAIN_TEXT" value="895" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Build All (disassembly)" value="4" />
-          <entry key="CustomTest" value="1" />
+          <entry key="Build All (disassembly)" value="8" />
+          <entry key="CustomTest" value="2" />
           <entry key="ProgettoApi2019 (disassembly)" value="12" />
           <entry key="c" value="7" />
-          <entry key="in" value="3" />
-          <entry key="out" value="1" />
+          <entry key="hashing" value="1" />
+          <entry key="in" value="6" />
+          <entry key="out" value="2" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="Disassembly" value="16" />
+          <entry key="Disassembly" value="20" />
           <entry key="ObjectiveC" value="7" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="PLAIN_TEXT" value="11" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.9">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="327">
-                  <caret line="708" lean-forward="true" selection-start-line="708" selection-end-line="708" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                    <element signature="e#413#482#0" />
-                    <element signature="e#536#653#0" />
-                    <element signature="e#1227#1243#0" />
-                    <element signature="e#2733#2788#0" />
-                    <element signature="e#2007#2713#0" />
-                    <element signature="e#2616#2691#0" />
-                    <element signature="e#3641#3912#1" />
-                    <element signature="e#3125#3158#0" />
-                    <element signature="e#3158#3583#0" />
-                    <element signature="e#3476#3536#0" />
-                    <element signature="e#3403#3633#0" />
-                    <element signature="e#4487#4571#0" />
-                    <element signature="e#4487#5991#0" />
-                    <element signature="e#3122#3157#0" />
-                    <element signature="e#6883#6955#0" />
-                    <element signature="e#8423#8516#0" />
-                    <element signature="e#11013#11091#0" />
-                    <element signature="e#10228#10527#0" />
-                    <element signature="e#10697#10797#0" />
-                    <element signature="e#11671#13706#0" />
-                    <element signature="e#12517#12593#0" />
-                    <element signature="e#10141#10233#0" />
-                    <element signature="e#16811#16852#0" />
-                    <element signature="e#19239#21537#1" />
-                    <element signature="e#20353#20410#0" />
-                    <element signature="e#20749#21125#1" />
-                    <element signature="e#22372#22438#0" />
-                    <element signature="e#24776#24810#0" />
-                    <element signature="e#24812#24846#0" />
-                    <element signature="e#25944#26868#1" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/main.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1020">
-                  <caret line="745" column="102" selection-start-line="745" selection-start-column="102" selection-end-line="745" selection-end-column="102" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="530" column="51" selection-start-line="530" selection-start-column="51" selection-end-line="530" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#3898#4060#0" />
+                <element signature="e#3898#4641#0" />
+                <element signature="e#4643#4851#0" />
+                <element signature="e#4643#5123#0" />
+                <element signature="e#5149#5237#0" />
+                <element signature="e#5149#5620#0" />
+                <element signature="e#5622#5816#0" />
+                <element signature="e#5622#6047#0" />
+                <element signature="e#6167#6370#0" />
+                <element signature="e#6167#8137#0" />
+                <element signature="e#8139#8370#0" />
+                <element signature="e#9397#9708#0" />
+                <element signature="e#11072#11214#0" />
+                <element signature="e#12679#13024#0" />
+                <element signature="e#12679#13958#0" />
+                <element signature="e#13960#14254#0" />
+                <element signature="e#13960#16214#0" />
+                <element signature="e#16216#16488#0" />
+                <element signature="e#18059#21350#0" />
+                <element signature="e#21352#22675#0" />
+                <element signature="e#22677#22867#0" />
+                <element signature="e#22677#25166#0" />
+                <element signature="e#25168#25363#0" />
+                <element signature="e#25168#25740#0" />
+                <element signature="e#25898#26189#0" />
+                <element signature="e#25898#27016#0" />
+                <element signature="e#27018#28677#0" />
+                <element signature="e#28679#31035#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="651">
+              <caret line="31" column="6" lean-forward="true" selection-end-line="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.py.out">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="32" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hashing">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -210,6 +165,10 @@
       <find>addrel</find>
       <find>indexMem</find>
       <find>countIn</find>
+      <find>----</find>
+      <find>delete</find>
+      <find>Elijah_Baley</find>
+      <find>&quot;Elijah_Baley&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -225,8 +184,8 @@
       <list>
         <option value="$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/PUBBLICI/CustomTest" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/PUBBLICI/CustomTest" />
       </list>
     </option>
   </component>
@@ -237,10 +196,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-6" />
-    <option name="width" value="2754" />
-    <option name="height" value="1756" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-22" />
+    <option name="width" value="5508" />
+    <option name="height" value="3510" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -259,6 +218,12 @@
               <item name="ProgettoApi2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProgettoApi2019" type="462c0819:PsiDirectoryNode" />
               <item name="PUBBLICI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProgettoApi2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProgettoApi2019" type="462c0819:PsiDirectoryNode" />
+              <item name="PUBBLICI" type="462c0819:PsiDirectoryNode" />
+              <item name="MONOTONE" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,7 +280,8 @@
       <workItem from="1563568026125" duration="3670000" />
       <workItem from="1563615188074" duration="9386000" />
       <workItem from="1563703203490" duration="3450000" />
-      <workItem from="1563738335843" duration="84830000" />
+      <workItem from="1563738335843" duration="103376000" />
+      <workItem from="1564467663296" duration="4921000" />
     </task>
     <task id="LOCAL-00001" summary="first reading- to test in the posix framework">
       <created>1563706179914</created>
@@ -373,11 +339,25 @@
       <option name="project" value="LOCAL" />
       <updated>1564333044943</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="delrel rewritten">
+      <created>1564409682679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1564409682680</updated>
+    </task>
+    <task id="LOCAL-00010" summary="delrel works pretty fine">
+      <created>1564412645939</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1564412645939</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105791000" />
+    <option name="totallyTimeSpent" value="129258000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -389,47 +369,47 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="0" width="1377" height="878" extended-state="0" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.7165533" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Run" order="3" sideWeight="0.49811035" visible="true" weight="0.600907" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811035" weight="0.32931727" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.0" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49817118" weight="0.32931727" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50188965" side_tool="true" weight="0.32891247" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32891247" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.32891247" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.0" />
+      <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.49817118" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50188965" side_tool="true" weight="0.32891247" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32891247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08558888" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989027" visible="true" weight="0.33762887" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39561856" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49811035" visible="true" weight="0.15481435" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3842035" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.0" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49817118" weight="0.3273196" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49817118" weight="0.32797858" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010973" side_tool="true" weight="0.32860824" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50188965" side_tool="true" weight="0.32891247" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32891247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -451,155 +431,27 @@
     <MESSAGE value="fix on mutual pointing" />
     <MESSAGE value="implemented report, remove rel e del rel. Need to debug a lot" />
     <MESSAGE value="debug on relation order and several fix on segfaults, segfault detected in cleansystemfromeentity()." />
-    <option name="LAST_COMMIT_MESSAGE" value="debug on relation order and several fix on segfaults, segfault detected in cleansystemfromeentity()." />
+    <MESSAGE value="delrel rewritten" />
+    <MESSAGE value="delrel works pretty fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="delrel works pretty fine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>205</line>
-          <option name="timeStamp" value="97" />
+          <line>104</line>
+          <option name="timeStamp" value="243" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>292</line>
-          <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>294</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>120</line>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>125</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>134</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>132</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>586</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>600</line>
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>391</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>392</line>
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>378</line>
-          <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>379</line>
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>569</line>
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>641</line>
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>625</line>
-          <option name="timeStamp" value="134" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>655</line>
-          <option name="timeStamp" value="136" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>598</line>
-          <option name="timeStamp" value="137" />
+          <line>107</line>
+          <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>145</line>
-          <option name="timeStamp" value="139" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>142</line>
-          <option name="timeStamp" value="141" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>636</line>
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>634</line>
-          <option name="timeStamp" value="144" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>117</line>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>130</line>
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>599</line>
-          <option name="timeStamp" value="148" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>698</line>
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>704</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>700</line>
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>706</line>
-          <option name="timeStamp" value="153" />
+          <line>511</line>
+          <option name="timeStamp" value="245" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -615,27 +467,40 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="entityVector" language="ObjectiveC" />
         <watch expression="myLeaderBoard" language="ObjectiveC" />
-        <watch expression="entityVector[616]" language="ObjectiveC" />
-        <watch expression="entityVector[679]" language="ObjectiveC" />
-        <watch expression="entityVector[2182]" language="ObjectiveC" />
-        <watch expression="entityVector[2919]" language="ObjectiveC" />
-        <watch expression="entityVector[616]" />
-        <watch expression="entityVector" />
-        <watch expression="entityVector[2182]" />
+        <watch expression="entityVector" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
       <expression>
-        <expression-string>strcmp(relSrc, &quot;Jesse_Baley&quot;)==0</expression-string>
+        <expression-string>relSrc==&quot;Rikaine_Delmarre&quot;</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>relSrc==&quot;Jesse_Baley&quot;</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>relSrc==&quot;&quot;</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
         <expression-string>relSrc=</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>relSrc==&quot;Gladia_Delmarre&quot;</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>strcmp(relSrc, &quot;Jesse_Baley&quot;)==0</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -654,25 +519,30 @@
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>relSrc==NULL||EXIT_FAILURE</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>valueToInsert[position]==NULL</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
     <expressions id="watch">
       <expression>
-        <expression-string>entityVector[2919]</expression-string>
+        <expression-string>entityVector</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[616]-&gt;relationsType</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[616]-&gt;relationsType-&gt;relationIn</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
         <expression-string>entityVector[2182]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[2919]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -701,25 +571,13 @@
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>myLeaderBoard</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>valueToInsert</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entityVector</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.py.out">
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/MULTIPLEMIXUP/batch5.1.in">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.1.in">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
@@ -729,59 +587,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hashing">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="32" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="20" />
+        <state relative-caret-position="651">
+          <caret line="31" column="6" lean-forward="true" selection-end-line="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="708" lean-forward="true" selection-start-line="708" selection-end-line="708" />
+        <state relative-caret-position="366">
+          <caret line="530" column="51" selection-start-line="530" selection-start-column="51" selection-end-line="530" selection-end-column="51" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#413#482#0" />
-            <element signature="e#536#653#0" />
-            <element signature="e#1227#1243#0" />
-            <element signature="e#2733#2788#0" />
-            <element signature="e#2007#2713#0" />
-            <element signature="e#2616#2691#0" />
-            <element signature="e#3641#3912#1" />
-            <element signature="e#3125#3158#0" />
-            <element signature="e#3158#3583#0" />
-            <element signature="e#3476#3536#0" />
-            <element signature="e#3403#3633#0" />
-            <element signature="e#4487#4571#0" />
-            <element signature="e#4487#5991#0" />
-            <element signature="e#3122#3157#0" />
-            <element signature="e#6883#6955#0" />
-            <element signature="e#8423#8516#0" />
-            <element signature="e#11013#11091#0" />
-            <element signature="e#10228#10527#0" />
-            <element signature="e#10697#10797#0" />
-            <element signature="e#11671#13706#0" />
-            <element signature="e#12517#12593#0" />
-            <element signature="e#10141#10233#0" />
-            <element signature="e#16811#16852#0" />
-            <element signature="e#19239#21537#1" />
-            <element signature="e#20353#20410#0" />
-            <element signature="e#20749#21125#1" />
-            <element signature="e#22372#22438#0" />
-            <element signature="e#24776#24810#0" />
-            <element signature="e#24812#24846#0" />
-            <element signature="e#25944#26868#1" />
+            <element signature="e#3898#4060#0" />
+            <element signature="e#3898#4641#0" />
+            <element signature="e#4643#4851#0" />
+            <element signature="e#4643#5123#0" />
+            <element signature="e#5149#5237#0" />
+            <element signature="e#5149#5620#0" />
+            <element signature="e#5622#5816#0" />
+            <element signature="e#5622#6047#0" />
+            <element signature="e#6167#6370#0" />
+            <element signature="e#6167#8137#0" />
+            <element signature="e#8139#8370#0" />
+            <element signature="e#9397#9708#0" />
+            <element signature="e#11072#11214#0" />
+            <element signature="e#12679#13024#0" />
+            <element signature="e#12679#13958#0" />
+            <element signature="e#13960#14254#0" />
+            <element signature="e#13960#16214#0" />
+            <element signature="e#16216#16488#0" />
+            <element signature="e#18059#21350#0" />
+            <element signature="e#21352#22675#0" />
+            <element signature="e#22677#22867#0" />
+            <element signature="e#22677#25166#0" />
+            <element signature="e#25168#25363#0" />
+            <element signature="e#25168#25740#0" />
+            <element signature="e#25898#26189#0" />
+            <element signature="e#25898#27016#0" />
+            <element signature="e#27018#28677#0" />
+            <element signature="e#28679#31035#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.py.out">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
