@@ -10,6 +10,8 @@
 #define DIMENTITYNAME 100
 #define DIMCOMMAND 10
 #define FIELDSINADDREL 10
+#define DELTAREASHING 313
+#define MAXREHASHINGATTEMPTS 5
 
 //GLOBAL VARIABLES AND PROTOTYPES
 
@@ -67,6 +69,7 @@ typeRelationNormal* memoryTypeEntity;
 char * buffer;
 
 void addEntity(char* nameEntity);
+int findHashedValues(char* stringToFind, int hashTableLenght);
 void deleteEntity(char* nameEntity);
 void deleteEntityOld(char* nameEntity);
 char* findEntityName(char* buffer);
@@ -104,11 +107,15 @@ int main() {
         if(!strcmp(command, "addent")) {
             entityName=findEntityName(buffer);
             addEntity(entityName);
+            entityName=NULL;
         }
         else if (!strcmp(command, "addrel")) {
 
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             addRelation(relSrc, relDst, relType);
+            relDst=NULL;
+            relSrc=NULL;
+            relType=NULL;
         }
         else if (!strcmp(command, "delent")) {
             entityName=findEntityName(buffer);
@@ -186,8 +193,18 @@ void addEntity(char* nameEntity){
         createEntityStructure(&entityVector[hashedIndex], nameEntity);
     }
     else{
-        if(entityVector[hashedIndex]->name!=NULL) {  //if entity does not exists yet
-            printf("THE HASH CONFLICT HAS HAPPENED!");
+        if(strcmp(entityVector[hashedIndex]->name, nameEntity)!=0) {  //if entity does not exists yet
+            int countMaxRehash=0;
+            //TODO implement a more effective strategy for reashing
+            while(entityVector[hashedIndex]!=NULL){
+                countMaxRehash++;
+                if(countMaxRehash>MAXREHASHINGATTEMPTS) printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
+                hashedIndex= hashedIndex+DELTAREASHING;
+                if(hashedIndex>=entityVectorLenght)hashedIndex=hashedIndex-entityVectorLenght;
+
+            }
+            createEntityStructure(&entityVector[hashedIndex], nameEntity);
+
         }
     }
 }
@@ -205,6 +222,33 @@ void createEntityStructure(entity** pointerToModify, char* entityName){
     *pointerToModify=newEntity;
 
 }
+
+
+int findHashedValues(char* stringToFind, int hashTableLenght){
+    int position=0;
+    int result=0;
+    while(stringToFind[position]!='\0'){
+        result+= stringToFind[position]*position;
+        position++;
+    }
+    result = result%hashTableLenght;
+    if(entityVector[result]==NULL)return result;
+    else{
+        int countMaxRehash=0;
+        while(entityVector[result]!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0){
+            countMaxRehash++;
+            if(countMaxRehash>MAXREHASHINGATTEMPTS) {
+                printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
+                return 0;
+            }
+            result= result+DELTAREASHING;
+            if(result>=entityVectorLenght)result=result-entityVectorLenght;
+        }
+        return result;
+    }
+
+}
+
 
 //_______________________________________________________________________________________________
 //ADDREL FUNCTIONS
@@ -273,7 +317,7 @@ void defineRelationFields( char** relSrcFinal, char** relDstFinal, char** relTyp
 void addRelation(char* relSrc,char* relDst, char* relType){
 
     //check if the entity exists
-    if(entityVector[hashValue(relSrc,entityVectorLenght)]!=NULL&&entityVector[hashValue(relDst,entityVectorLenght)]!=NULL){
+    if(entityVector[findHashedValues(relSrc,entityVectorLenght)]!=NULL&&entityVector[findHashedValues(relDst,entityVectorLenght)]!=NULL){
         //check if the relation already exists inside the following function
         int* counterIn=addRelationToEntity(relSrc, relDst, relType);
         if(counterIn==0)return; //If the relation has been added yet
@@ -318,12 +362,12 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
         previous=NULL;
         current=*myLeaderboard;
 
-        while(strcmp(nameRelation,current->nameTypeRelation)>0){
+        while(current!=NULL&&strcmp(nameRelation,current->nameTypeRelation)>0){
             previous=current; //TODO and if current==NULL?
             current=current->next;
         }
 
-        if(strcmp(nameRelation,current->nameTypeRelation)==0) {
+        if(current!=NULL&&strcmp(nameRelation,current->nameTypeRelation)==0) {
             free(newType);
             return current;
         }
@@ -338,6 +382,8 @@ leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRela
             previous->next=newType;
         } else *myLeaderboard=newType;
         returnType=newType;
+
+        if(current!=NULL)current->previous=newType;
     }
 
     return returnType;
@@ -397,8 +443,8 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
  * @return the counter of in relations in the destination entity
  */
 int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
-    entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
-    entity* dstEntity = entityVector[hashValue(relDst, entityVectorLenght)];
+    entity* srcEntity = entityVector[findHashedValues(relSrc, entityVectorLenght)];
+    entity* dstEntity = entityVector[findHashedValues(relDst, entityVectorLenght)];
     relation* relOut;
     relation* relIn;
 
@@ -535,8 +581,8 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
         *relationTypes=newType;
         returnType=newType;
     } else{
-        previous= NULL;
-        current= *relationTypes;
+        previous = NULL;
+        current = *relationTypes;
 
         while(current!=NULL&&strcmp(nameRelation,current->nameTypeRelation)>0){
             previous=current; //TODO and if current==NULL?
@@ -557,6 +603,7 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
         newType->relationOut=NULL;
 
         if(previous!=NULL)previous->next = newType;
+        else *relationTypes=newType;
         if(current!=NULL)current->previous=newType;
 
         returnType=newType;
@@ -642,7 +689,7 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
 //DELREL FUNCTIONS
 
 void deleteEntity(char *nameEntity){
-    entity* entityToDelete = entityVector[hashValue(nameEntity, entityVectorLenght)];
+    entity* entityToDelete = entityVector[findHashedValues(nameEntity, entityVectorLenght)];
     typeRelationNormal* currentTypeRelation=entityToDelete->relationsType;
 
 
@@ -724,7 +771,7 @@ void deleteEntity(char *nameEntity){
 
 //OLD DEPRECATED
 void deleteEntityOld(char* nameEntity) {
-    entity* entityToDelete = entityVector[hashValue(nameEntity, entityVectorLenght)];
+    entity* entityToDelete = entityVector[findHashedValues(nameEntity, entityVectorLenght)];
     typeRelationNormal* currentTypeRelation=entityToDelete->relationsType;
 
     relation** RelationNodeIn=&currentTypeRelation->relationIn;//TO track the head of list
@@ -853,8 +900,8 @@ int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead){
  * @param relType the name of the relation
  */
 void deleteRelation(char* relSrc, char* relDst, char* relType){
-    entity* srcEntity = entityVector[hashValue(relSrc, entityVectorLenght)];
-    entity* dstEntity = entityVector[hashValue(relDst,entityVectorLenght)]; //TODO this could drain a lot of time
+    entity* srcEntity = entityVector[findHashedValues(relSrc, entityVectorLenght)];
+    entity* dstEntity = entityVector[findHashedValues(relDst,entityVectorLenght)]; //TODO this could drain a lot of time
     typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
     relation* currentRelation=NULL;
     relation* dstNode; //Destination node, return value of function
@@ -985,7 +1032,6 @@ void report(){
     entityLeaderBoard* currentEntityLb=NULL;
 
     if(currentTypeLb==NULL){
-        printf("\n");
         printf("none");
         printf("\n");
         return;
