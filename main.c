@@ -129,6 +129,10 @@ int main() {
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             deleteRelation(relSrc, relDst, relType);
         }
+
+        else if(!strcmp(command, "break")){
+            printf("stop");
+        }
         else if (!strcmp(command, "end"))
             break;
 
@@ -235,7 +239,7 @@ int findHashedValues(char* stringToFind, int hashTableLenght){
     if(entityVector[result]==NULL)return result;
     else{
         int countMaxRehash=0;
-        while(entityVector[result]!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0){
+        while(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0){
             countMaxRehash++;
             if(countMaxRehash>MAXREHASHINGATTEMPTS) {
                 printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
@@ -319,20 +323,32 @@ void addRelation(char* relSrc,char* relDst, char* relType){
     //check if the entity exists
     if(entityVector[findHashedValues(relSrc,entityVectorLenght)]!=NULL&&entityVector[findHashedValues(relDst,entityVectorLenght)]!=NULL){
         //check if the relation already exists inside the following function
-        int* counterIn=addRelationToEntity(relSrc, relDst, relType);
+        int* counterIn = addRelationToEntity(relSrc, relDst, relType);
         if(counterIn==0)return; //If the relation has been added yet
 
         typeRelationLeaderboard* returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,*counterIn);
 
         if(*counterIn>=returnType->winCount){
-            addRelationLeaderBoard(returnType,relDst,counterIn);//TODO this can't always happen, I need an if on it
+            addRelationLeaderBoard(returnType,relDst,counterIn);
+
+            //TODO V0
+            //the if tries to avoid the case in which the dest is already in leaderboard, in that case a wrong leaderboard position assignment was spotted
+
+            if(memoryTypeEntity->leaderboardPosition==NULL || strcmp(memoryTypeLeaderboard->name,memoryTypeEntity->leaderboardPosition->name)==0)
+                memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
+                                                                             //Player is in position and in which position
+            memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
+
+        } else{
+
+            //TODO V0
+            memoryTypeEntity->leaderboardPosition=NULL;
+            memoryTypeEntity->typeInLeaderBoard=returnType;
         }
+        if(*counterIn>returnType->winCount)
+            returnType->winCount=*counterIn;
 
-        if(*counterIn>returnType->winCount)returnType->winCount=*counterIn;
 
-        memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
-                                                                     //Player is in position and in which position
-        memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
     }
 }
 
@@ -344,7 +360,7 @@ void addRelation(char* relSrc,char* relDst, char* relType){
  * @param nameRelation the type of relation I want to add
  * @return the pointer to the relation type node
  */
-leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation,int counterIn){
+leaderboard addRelationTypeLeaderboard(leaderboard* myLeaderboard, char*nameRelation, int counterIn){
     typeRelationLeaderboard* current=NULL;
     typeRelationLeaderboard* previous=NULL;
     typeRelationLeaderboard* newType=NULL;
@@ -469,8 +485,6 @@ int* addRelationToEntity(char* relSrc, char*relDst, char* relType){
 
 
 }
-
-
 
 
 relation* insertRelationNodeInSrc(relation** listOfRelationsInorOut, char* relSrc, char* relDst){
@@ -690,17 +704,22 @@ relation* insertRelationNode(relation** listOfRelationsInorOut,int inOrOut, char
 
 void deleteEntity(char *nameEntity){
     entity* entityToDelete = entityVector[findHashedValues(nameEntity, entityVectorLenght)];
+    if(entityToDelete==NULL)return;
+
     typeRelationNormal* currentTypeRelation=entityToDelete->relationsType;
+    if(currentTypeRelation==NULL)return;
 
 
-    relation* currentRelationNodeIn=currentTypeRelation->relationIn;//to scan the list
-    relation* currentRelationNodeOut= currentTypeRelation->relationOut;
+    relation* currentRelationNodeIn; //to scan the list
+    relation* currentRelationNodeOut;
     relation* nodeMemory=NULL;
     typeRelationNormal* memoryTypeEntityWoW;
 
     while (currentTypeRelation!=NULL){
+        currentRelationNodeIn = currentTypeRelation->relationIn;//to scan the list
+        currentRelationNodeOut = currentTypeRelation->relationOut;
 
-        //Clean all the relation nodes in the src entity
+        //Clean all the relation in nodes
         while(currentRelationNodeIn!=NULL){
             nodeMemory=currentRelationNodeIn->next;
             deleteRelation(currentRelationNodeIn->nameOtherEntity, entityToDelete->name, currentTypeRelation->nameTypeRelation);
@@ -708,7 +727,7 @@ void deleteEntity(char *nameEntity){
 
         }
 
-        //Clean all the relation relation nodes in dst entity
+        //Clean all the relation out nodes
         while(currentRelationNodeOut!=NULL){
             nodeMemory=currentRelationNodeOut->next;
             deleteRelation(entityToDelete->name, currentRelationNodeOut->nameOtherEntity,currentTypeRelation->nameTypeRelation );
@@ -726,28 +745,26 @@ void deleteEntity(char *nameEntity){
                 if (currentTypeRelation->leaderboardPosition->next!=NULL)currentTypeRelation->leaderboardPosition->next->previous=currentTypeRelation->leaderboardPosition->previous;
             }
 
+            //FREE TYPE RELATION LEADERBOARD  //TODO V0
+            if(currentTypeRelation->typeInLeaderBoard->entities==NULL){
 
-        }
-
-
-
-        //FREE TYPE RELATION LEADERBOARD
-        if(currentTypeRelation->typeInLeaderBoard->entities==NULL){
-
-            if(currentTypeRelation->typeInLeaderBoard->previous==NULL){
-                myLeaderBoard=currentTypeRelation->typeInLeaderBoard->next;
-            } else{
-                currentTypeRelation->typeInLeaderBoard->previous->next=myLeaderBoard = currentTypeRelation->typeInLeaderBoard->next;
-                if(currentTypeRelation->typeInLeaderBoard->next!=NULL)currentTypeRelation->typeInLeaderBoard->next->previous=currentTypeRelation->typeInLeaderBoard->previous;
+                if(currentTypeRelation->typeInLeaderBoard->previous==NULL){
+                    myLeaderBoard=currentTypeRelation->typeInLeaderBoard->next;
+                } else{
+                    currentTypeRelation->typeInLeaderBoard->previous->next=myLeaderBoard = currentTypeRelation->typeInLeaderBoard->next;
+                    if(currentTypeRelation->typeInLeaderBoard->next!=NULL)currentTypeRelation->typeInLeaderBoard->next->previous=currentTypeRelation->typeInLeaderBoard->previous;
+                }
+                free(currentTypeRelation->typeInLeaderBoard);
             }
-            free(currentTypeRelation->typeInLeaderBoard);
-        }
 
+
+        }
 
         //FREE TYPE REL IN ENTITY
         memoryTypeEntityWoW=currentTypeRelation->next;
         if(currentTypeRelation->previous==NULL){
-            entityToDelete->relationsType=NULL;
+            entityToDelete->relationsType=currentTypeRelation->next;
+            if(currentTypeRelation->next!=NULL)currentTypeRelation->next->previous=currentTypeRelation->previous;
         } else{
             currentTypeRelation->previous->next=currentTypeRelation->next;
             if(currentTypeRelation->next!=NULL)currentTypeRelation->next->previous=currentTypeRelation->previous;
@@ -764,8 +781,6 @@ void deleteEntity(char *nameEntity){
     entityToDelete->relationsType=NULL;
     free(entityToDelete);
     //Entity to delete is not null, otherwise I must rehash
-
-
 
 }
 
@@ -902,8 +917,8 @@ int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead){
 void deleteRelation(char* relSrc, char* relDst, char* relType){
     entity* srcEntity = entityVector[findHashedValues(relSrc, entityVectorLenght)];
     entity* dstEntity = entityVector[findHashedValues(relDst,entityVectorLenght)]; //TODO this could drain a lot of time
-    typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
-    relation* currentRelation=NULL;
+
+    if(srcEntity==NULL||dstEntity==NULL)return;
     relation* dstNode; //Destination node, return value of function
 
     //TODO CHECK IF THE RELATION IS DELETED IN DST
@@ -915,11 +930,15 @@ void deleteRelation(char* relSrc, char* relDst, char* relType){
         return; //No relation found
 
     //I delete the relation node from the relation  dest entity and manage the leaderboard
+    if(dstEntity->relationsType==NULL)
+        printf("------------d-------------   relation dst can have type to null");
+
     deleteRelationInDst(dstNode,relType,dstEntity->relationsType);
 
 }
 
 relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
+
     typeRelationNormal* currentRelTypeEnt=srcEntity->relationsType;
     relation* currentRelation=NULL;//Source relation node, deleted at the end of function
     relation* dstNode; //Destination node, return value of function
@@ -934,18 +953,21 @@ relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
     while(currentRelation!=NULL&&strcmp(currentRelation->nameOtherEntity, relDst)!=0){
         currentRelation=currentRelation->next;
     }
-    if(currentRelation==NULL)return NULL;//if the relation does not exists
+    if(currentRelation==NULL)
+        return NULL;//if the relation does not exists
 
 
-    //I prepare the entity structure for the deletion of the relation
+    //I link the previous and next nodes before the current node is deleted
     if(currentRelation->previous==NULL){
         currentRelTypeEnt->relationOut=currentRelation->next;
+        if(currentRelation->next!=NULL)currentRelation->next->previous=currentRelation->previous; //TODO V0
     } else{
         if(currentRelation->next!=NULL)currentRelation->next->previous=currentRelation->previous;
         currentRelation->previous->next=currentRelation->next;
     }
 
-    if(currentRelation->next==NULL&&currentRelation->previous==NULL)currentRelTypeEnt->relationOut=NULL; //TO SOLVE PROBLEMS IN DELETING LAS ENTITY
+    if(currentRelation->next==NULL&&currentRelation->previous==NULL)
+        currentRelTypeEnt->relationOut=NULL; //TO SOLVE PROBLEMS IN DELETING LAST ENTITY
 
     dstNode=currentRelation->otherRelation;
     currentRelation->otherRelation=NULL;
@@ -953,7 +975,6 @@ relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
     currentRelation->next=NULL;
     currentRelation->nameOtherEntity=NULL;
     free(currentRelation);
-    currentRelation=NULL;
 
 
     return dstNode;
@@ -969,14 +990,16 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
     if(relationTypesEntityDst==NULL) return ;//If the relation does not exists
 
     if(dstNode->previous==NULL){
+        if(dstNode->next!=NULL)dstNode->next->previous=dstNode->previous;
         relationTypesEntityDst->relationIn=dstNode->next;
     } else{
-        dstNode->next->previous=dstNode->previous;
+        if(dstNode->next!=NULL)dstNode->next->previous=dstNode->previous;
         dstNode->previous->next=dstNode->next;
     }
 
-    //Deleting the node in dst nod in sources
-    if(dstNode->next==NULL&&dstNode->previous==NULL)relationTypesEntityDst->relationIn=NULL;
+    //Deleting the node in dst node in sources
+    if(dstNode->next==NULL&&dstNode->previous==NULL)
+        relationTypesEntityDst->relationIn=NULL;
 
     dstNode->next=NULL;
     dstNode->previous=NULL;
@@ -984,13 +1007,12 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
     dstNode->otherRelation=NULL;
     free(dstNode);
 
-
-//
-//    //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
+    //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
 
     if(relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
 
         entityLeaderBoard* entityLbToDelete=relationTypesEntityDst->leaderboardPosition; //leaderboard entity to delete
+        relationTypesEntityDst->leaderboardPosition=NULL;
         entityLeaderBoard* previousEntityLb=entityLbToDelete->previous;
         entityLeaderBoard* nextEntityLb=entityLbToDelete->next;
 
@@ -1006,21 +1028,12 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
         }
     }
 
-
-
-
-
-
     relationTypesEntityDst->counterIn--;
 
     //Assign new win count only if the relation was the one that gave victory to that entity
     if(relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn+1){
         relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
     }
-
-
-
-
 
 }
 
