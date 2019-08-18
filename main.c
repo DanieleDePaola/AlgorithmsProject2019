@@ -197,19 +197,22 @@ void addEntity(char* nameEntity){
         createEntityStructure(&entityVector[hashedIndex], nameEntity);
     }
     else{
-        if(strcmp(entityVector[hashedIndex]->name, nameEntity)!=0) {  //if entity does not exists yet
+           //if entity does not exists yet
             int countMaxRehash=0;
             //TODO implement a more effective strategy for reashing
-            while(entityVector[hashedIndex]!=NULL){
+            while(entityVector[hashedIndex]!=NULL&&entityVector[hashedIndex]->name==NULL){
                 countMaxRehash++;
-                if(countMaxRehash>MAXREHASHINGATTEMPTS) printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
-                hashedIndex= hashedIndex+DELTAREASHING;
-                if(hashedIndex>=entityVectorLenght)hashedIndex=hashedIndex-entityVectorLenght;
+                if(countMaxRehash>MAXREHASHINGATTEMPTS)
+                    printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
 
+                hashedIndex= hashedIndex+DELTAREASHING;
+
+                if(hashedIndex>=entityVectorLenght)
+                    hashedIndex=hashedIndex-entityVectorLenght;
             }
             createEntityStructure(&entityVector[hashedIndex], nameEntity);
 
-        }
+
     }
 }
 
@@ -236,10 +239,10 @@ int findHashedValues(char* stringToFind, int hashTableLenght){
         position++;
     }
     result = result%hashTableLenght;
-    if(entityVector[result]==NULL)return result;
+    if(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)==0)return result;
     else{
         int countMaxRehash=0;
-        while(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0){
+        while((entityVector[result]!=NULL&&entityVector[result]->name==NULL)||(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0)){
             countMaxRehash++;
             if(countMaxRehash>MAXREHASHINGATTEMPTS) {
                 printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
@@ -917,7 +920,7 @@ void cleanSystemFromEntity(relation** headOfList, relation* currentRelationNode,
  */
 int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead){
     int winCountMax=0;
-    if(currentLeaderBoardHead==NULL) winCountMax=1;
+    if(currentLeaderBoardHead==NULL) winCountMax=0;
 
     while(currentLeaderBoardHead!=NULL){
         if(*currentLeaderBoardHead->countIn>winCountMax)winCountMax=*currentLeaderBoardHead->countIn;
@@ -1054,8 +1057,9 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 //        }
 //    }
 
+    //TODO V0, added relation type !=NULL to avoid SEGFAULT
     //OPTIMIZATION: IF THE PLAYER HAS WINCOUNT ==0 I REMOVE HIM FROM LEADERBOARD
-    if(relationTypesEntityDst->leaderboardPosition!=NULL&&*relationTypesEntityDst->leaderboardPosition->countIn==1){
+    if(relationTypesEntityDst!=NULL&&relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->leaderboardPosition->countIn!=NULL&&*relationTypesEntityDst->leaderboardPosition->countIn==1){
 
         entityLeaderBoard* entityLbToDelete=relationTypesEntityDst->leaderboardPosition; //leaderboard entity to delete
         relationTypesEntityDst->leaderboardPosition=NULL;
@@ -1076,8 +1080,9 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
     relationTypesEntityDst->counterIn--;
 
+    //TODO V0 added relation type entity dst.typeIn ln leaderboard != NULL to avoid segfault
     //IF THE LEADERBOARD TYPE IS EMPTY AFTER A DELETION, I REMOVE THE TYPE FROM LEADERBOARD
-    if(relationTypesEntityDst->typeInLeaderBoard->entities==NULL){
+    if(relationTypesEntityDst->typeInLeaderBoard!=NULL&&relationTypesEntityDst->typeInLeaderBoard->entities==NULL){
         typeRelationLeaderboard* currentType= relationTypesEntityDst->typeInLeaderBoard;
         typeRelationLeaderboard* previousType= currentType->previous;
         typeRelationLeaderboard* nextType=currentType->next;
@@ -1093,8 +1098,10 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
         }
     }
 
+
+    //TODO V0 added relation type entity dst.typeIn ln leaderboard != NULL to avoid segfault
     //Assign new win count only if the relation was the one that gave victory to that entity
-    if(relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn+1){
+    if(relationTypesEntityDst->typeInLeaderBoard!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn+1){
         relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
     }
 
