@@ -140,8 +140,105 @@ report
 delent "Boneless"
 delrel "River_Song" "Grunt" "kills"
 report
-break
 delent "Amelia_Pond"
 delent "Foretold"
+report
+delent "Akhaten"
+delrel "Rory_Williams" "Veil" "kills"
+report
+delrel "Mickey_Smith" "Veil" "kills"
+report
+delrel "Sandman" "The_Doctor" "fights"
+delent "Donna_Noble"
+delrel "River_Song" "Akhaten" "kills"
+delrel "Janus" "Nardole" "fights"
+report
+delent "Janus"
+report
+delrel "Bill_Potts" "Boneless" "kills"
+delent "Queen_of_Years"
+delrel "Amelia_Pond" "Akhaten" "kills"
+delent "Nardole"
+delrel "The_Vigil" "Rory_Williams" "fights"
+report
+delent "Donna_Noble"
+report
+delent "Mickey_Smith"
+report
+delent "Teselecta"
+delent "Boneless"
+report
+delrel "Clara_Oswald" "Janus" "kills"
+delrel "Grunt" "Amelia_Pond" "fights"
+report
+delrel "Foretold" "The_Doctor" "fights"
+delrel "Amelia_Pond" "Queen_of_Years" "kills"
+report
+delent "The_Doctor"
+delent "The_Vigil"
+delrel "Donna_Noble" "Teselecta" "kills"
+report
+delent "The_Teller"
+delent "The_Doctor"
+delrel "Rory_Williams" "Weeping_Angel" "kills"
+report
+delrel "Krafayis" "River_Song" "fights"
+delent "Rose_Tyler"
+report
+delrel "Akhaten" "Nardole" "fights"
+report
+delrel "Rose_Tyler" "Kantrofarri" "kills"
+delrel "Kantrofarri" "Rose_Tyler" "fights"
+report
+delrel "Krafayis" "Nardole" "fights"
+delrel "Mister_Sweet" "Amelia_Pond" "fights"
+delrel "The_Teller" "Rose_Tyler" "fights"
+report
+delrel "The_Vigil" "Clara_Oswald" "fights"
+delrel "Teselecta" "Amelia_Pond" "fights"
+delent "Weeping_Angel"
+delent "River_Song"
+delrel "Rory_Williams" "Kahler" "kills"
+report
+delrel "Weeping_Angel" "Clara_Oswald" "fights"
+delent "Queen_of_Years"
+report
+delent "Sandman"
+delrel "Grunt" "Mickey_Smith" "fights"
+delent "Grunt"
+report
+delrel "Amelia_Pond" "Janus" "kills"
+delent "Nardole"
+report
+delent "Mister_Sweet"
+delent "Bill_Potts"
+delrel "River_Song" "Kantrofarri" "kills"
+delent "Foretold"
+report
+break
+delent "Mickey_Smith"
+report
+break
+delrel "Mickey_Smith" "Teselecta" "kills"
+report
+break
+delrel "Kantrofarri" "Bill_Potts" "fights"
+delrel "Teselecta" "River_Song" "fights"
+delent "Rory_Williams"
+report
+break
+delent "Colony_Sarff"
+report
+break
+delrel "Colony_Sarff" "Nardole" "fights"
+delent "Janus"
+break
+report
+delent "Mister_Sweet"
+delrel "Rory_Williams" "Kantrofarri" "kills"
+report
+break
+delent "Bill_Potts"
+break
 report
 end

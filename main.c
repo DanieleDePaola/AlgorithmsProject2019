@@ -328,23 +328,39 @@ void addRelation(char* relSrc,char* relDst, char* relType){
 
         typeRelationLeaderboard* returnType= addRelationTypeLeaderboard(&myLeaderBoard, relType,*counterIn);
 
-        if(*counterIn>=returnType->winCount){
-            addRelationLeaderBoard(returnType,relDst,counterIn);
+        //TODO V0 choice1: insertion only the elements  with a certain wincount in leaderboard
+//        if(*counterIn>=returnType->winCount){
+//        if(*counterIn>=returnType->winCount){
+//            addRelationLeaderBoard(returnType,relDst,counterIn);
+//
+//            //TODO V0
+//            //the if tries to avoid the case in which the dest is already in leaderboard, in that case a wrong leaderboard position assignment was spotted
+//
+//            if(memoryTypeEntity->leaderboardPosition==NULL || strcmp(memoryTypeLeaderboard->name,memoryTypeEntity->leaderboardPosition->name)==0)
+//                memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
+//                                                                             //Player is in position and in which position
+//            memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
+//
+//        } else{
+//
+//            //TODO V0
+//            memoryTypeEntity->leaderboardPosition=NULL;
+//            memoryTypeEntity->typeInLeaderBoard=returnType;
+//        }
 
-            //TODO V0
-            //the if tries to avoid the case in which the dest is already in leaderboard, in that case a wrong leaderboard position assignment was spotted
+        //TODO V0 choice2: insert all the elements with at least one relation in in the leaderboard
+        addRelationLeaderBoard(returnType,relDst,counterIn);
 
-            if(memoryTypeEntity->leaderboardPosition==NULL || strcmp(memoryTypeLeaderboard->name,memoryTypeEntity->leaderboardPosition->name)==0)
-                memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
-                                                                             //Player is in position and in which position
-            memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
 
-        } else{
+        //the if tries to avoid the case in which the dest is already in leaderboard, in that case a wrong leaderboard position assignment was spotted
 
-            //TODO V0
-            memoryTypeEntity->leaderboardPosition=NULL;
-            memoryTypeEntity->typeInLeaderBoard=returnType;
-        }
+        if(memoryTypeEntity->leaderboardPosition==NULL || strcmp(memoryTypeLeaderboard->name,memoryTypeEntity->leaderboardPosition->name)==0)
+            memoryTypeEntity->leaderboardPosition=memoryTypeLeaderboard; //connection between  entity and leaderboard. For each type I know if the
+                                                                        //Player is in position and in which position
+        memoryTypeEntity->typeInLeaderBoard=returnType; //Connection between the types of leaderBoard and entity
+
+        //TODO end choice 2
+
         if(*counterIn>returnType->winCount)
             returnType->winCount=*counterIn;
 
@@ -444,6 +460,8 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
             if(previous!=NULL)previous->next=newCompetitor;
             else myTypeRelation->entities=newCompetitor;
 
+            if(current!=NULL)current->previous=newCompetitor;
+
         }
     }
     memoryTypeLeaderboard=newCompetitor;
@@ -520,6 +538,7 @@ relation* insertRelationNodeInSrc(relation** listOfRelationsInorOut, char* relSr
         newRelation->nameOtherEntity=relDst;
         newRelation->next=current;
         newRelation->previous=previous;
+        if(current!=NULL)current->previous=newRelation;
 
         if(previous!=NULL)previous->next=newRelation;
         else *listOfRelationsInorOut=newRelation;
@@ -562,9 +581,14 @@ relation* insertRelationNodeInDst(relation** listOfRelationsInorOut, char* relSr
         newRelation->nameOtherEntity=relSrc;
         newRelation->next=current;
         newRelation->previous=previous;
+        if(current!=NULL)current->previous=newRelation;
 
-        if(previous!=NULL)previous->next=newRelation;
-        else *listOfRelationsInorOut=newRelation;
+        if(previous!=NULL){
+            previous->next=newRelation;
+        }
+        else{
+            *listOfRelationsInorOut=newRelation;
+        }
 
         returnRelation = newRelation;
     }
@@ -777,9 +801,9 @@ void deleteEntity(char *nameEntity){
 
     }
     free(entityToDelete->name);
+    free(entityToDelete);
     entityToDelete->name=NULL;
     entityToDelete->relationsType=NULL;
-    free(entityToDelete);
     //Entity to delete is not null, otherwise I must rehash
 
 }
@@ -931,7 +955,8 @@ void deleteRelation(char* relSrc, char* relDst, char* relType){
 
     //I delete the relation node from the relation  dest entity and manage the leaderboard
     if(dstEntity->relationsType==NULL)
-        printf("------------d-------------   relation dst can have type to null");
+        return;
+
 
     deleteRelationInDst(dstNode,relType,dstEntity->relationsType);
 
@@ -1009,7 +1034,28 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
     //OPTIMIZATION: if the player was not in the first position I remove him from leaderboard
 
-    if(relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
+    //TODO V0 remove an element only if the element has wincount == 0
+//    if(relationTypesEntityDst->leaderboardPosition!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount>relationTypesEntityDst->counterIn){
+//
+//        entityLeaderBoard* entityLbToDelete=relationTypesEntityDst->leaderboardPosition; //leaderboard entity to delete
+//        relationTypesEntityDst->leaderboardPosition=NULL;
+//        entityLeaderBoard* previousEntityLb=entityLbToDelete->previous;
+//        entityLeaderBoard* nextEntityLb=entityLbToDelete->next;
+//
+//        if(previousEntityLb==NULL){
+//            relationTypesEntityDst->typeInLeaderBoard->entities=nextEntityLb;
+//            if(nextEntityLb->previous!=NULL)nextEntityLb->previous=NULL;
+//            free(entityLbToDelete);
+//        }
+//        else{
+//            previousEntityLb->next=entityLbToDelete->next;
+//            if(nextEntityLb!=NULL)nextEntityLb->previous=previousEntityLb;
+//            free(entityLbToDelete);
+//        }
+//    }
+
+    //OPTIMIZATION: IF THE PLAYER HAS WINCOUNT ==0 I REMOVE HIM FROM LEADERBOARD
+    if(relationTypesEntityDst->leaderboardPosition!=NULL&&*relationTypesEntityDst->leaderboardPosition->countIn==1){
 
         entityLeaderBoard* entityLbToDelete=relationTypesEntityDst->leaderboardPosition; //leaderboard entity to delete
         relationTypesEntityDst->leaderboardPosition=NULL;
@@ -1018,7 +1064,7 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
         if(previousEntityLb==NULL){
             relationTypesEntityDst->typeInLeaderBoard->entities=nextEntityLb;
-            if(nextEntityLb->previous!=NULL)nextEntityLb->previous=NULL;
+            if(nextEntityLb!=NULL&&nextEntityLb->previous!=NULL)nextEntityLb->previous=NULL;
             free(entityLbToDelete);
         }
         else{
@@ -1030,6 +1076,23 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
     relationTypesEntityDst->counterIn--;
 
+    //IF THE LEADERBOARD TYPE IS EMPTY AFTER A DELETION, I REMOVE THE TYPE FROM LEADERBOARD
+    if(relationTypesEntityDst->typeInLeaderBoard->entities==NULL){
+        typeRelationLeaderboard* currentType= relationTypesEntityDst->typeInLeaderBoard;
+        typeRelationLeaderboard* previousType= currentType->previous;
+        typeRelationLeaderboard* nextType=currentType->next;
+        if(previousType==NULL){
+            myLeaderBoard=nextType;
+            if(nextType!=NULL&&nextType->previous!=NULL)nextType->previous=NULL;
+            free(currentType);
+        }
+        else{
+            previousType->next=nextType;
+            if(nextType!=NULL)nextType->previous=previousType;
+            free(currentType);
+        }
+    }
+
     //Assign new win count only if the relation was the one that gave victory to that entity
     if(relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn+1){
         relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
@@ -1039,7 +1102,10 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
 
 //___________________________________________________________________________________________________________________________________
 //REPORT FUNCTIONS
-//TODO function used to explore the leaderboard and extract the winners
+
+/**
+ * function used to explore the leaderboard and extract the winners
+ */
 void report(){
     typeRelationLeaderboard* currentTypeLb=myLeaderBoard;
     entityLeaderBoard* currentEntityLb=NULL;
