@@ -197,6 +197,7 @@ void addEntity(char* nameEntity){
         createEntityStructure(&entityVector[hashedIndex], nameEntity);
     }
     else{
+            if(entityVector[hashedIndex]->name!=NULL&&strcmp(entityVector[hashedIndex]->name, nameEntity)==0)return;
            //if entity does not exists yet
             int countMaxRehash=0;
             //TODO implement a more effective strategy for reashing
@@ -738,7 +739,13 @@ void deleteEntity(char *nameEntity){
     if(entityToDelete==NULL)return;
 
     typeRelationNormal* currentTypeRelation=entityToDelete->relationsType;
-    if(currentTypeRelation==NULL)return;
+    if(currentTypeRelation==NULL){
+        if(entityToDelete->name!=NULL){
+            free(entityToDelete->name);
+            entityToDelete->name=NULL; //TODO V0 when I find an entity with type relation null I must delete also the name
+        }
+        return;
+    }
 
 
     relation* currentRelationNodeIn; //to scan the list
@@ -752,7 +759,7 @@ void deleteEntity(char *nameEntity){
         currentRelationNodeOut = currentTypeRelation->relationOut;
 
 
-        if(strcmp(currentRelationNodeOut->nameOtherEntity, entityToDelete->name)==0)
+        if(currentRelationNodeOut!=NULL&&currentRelationNodeOut->nameOtherEntity!=NULL&&strcmp(currentRelationNodeOut->nameOtherEntity, entityToDelete->name)==0)
             currentRelationNodeOut=currentRelationNodeOut->next;
 
         //Clean all the relation in nodes
