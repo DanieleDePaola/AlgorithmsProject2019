@@ -200,7 +200,8 @@ void addEntity(char* nameEntity){
            //if entity does not exists yet
             int countMaxRehash=0;
             //TODO implement a more effective strategy for reashing
-            while(entityVector[hashedIndex]!=NULL&&entityVector[hashedIndex]->name==NULL){
+            //TODO V0 removed entityVector[hashedIndex]->name!=null in condition
+            while(entityVector[hashedIndex]!=NULL){
                 countMaxRehash++;
                 if(countMaxRehash>MAXREHASHINGATTEMPTS)
                     printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
@@ -239,13 +240,15 @@ int findHashedValues(char* stringToFind, int hashTableLenght){
         position++;
     }
     result = result%hashTableLenght;
-    if(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)==0)return result;
+    if(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)==0)
+        return result;
     else{
         int countMaxRehash=0;
         while((entityVector[result]!=NULL&&entityVector[result]->name==NULL)||(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)!=0)){
+        //while(!(entityVector[result]!=NULL&&entityVector[result]->name!=NULL&&strcmp(entityVector[result]->name, stringToFind)==0)){
             countMaxRehash++;
             if(countMaxRehash>MAXREHASHINGATTEMPTS) {
-                printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
+                printf("ERROR IN FIND HASHING");
                 return 0;
             }
             result= result+DELTAREASHING;
