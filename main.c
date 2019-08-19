@@ -453,8 +453,9 @@ void addRelationLeaderBoard(leaderboard myTypeRelation, char* competitorName, in
             current=current->next;
         }
         if(current!=NULL&&strcmp(competitorName, current->name)==0){ //when entity is already inside the leaderboard
-            //current->countIn++; //TODO CHECK IF IS CORRECT ERROR
+            //current->countIn++;
             if(myTypeRelation->winCount<*current->countIn)myTypeRelation->winCount=*current->countIn;
+            memoryTypeLeaderboard=current; //TODO CHECK IF IS CORRECT ERROR
             return;
         } else{//when the entity is not in the leaderboard
             newCompetitor=malloc(sizeof(entityLeaderBoard));
@@ -742,12 +743,17 @@ void deleteEntity(char *nameEntity){
 
     relation* currentRelationNodeIn; //to scan the list
     relation* currentRelationNodeOut;
+    relation* currentRelationNodeOutMemory;
     relation* nodeMemory=NULL;
     typeRelationNormal* memoryTypeEntityWoW;
 
     while (currentTypeRelation!=NULL){
         currentRelationNodeIn = currentTypeRelation->relationIn;//to scan the list
         currentRelationNodeOut = currentTypeRelation->relationOut;
+
+
+        if(strcmp(currentRelationNodeOut->nameOtherEntity, entityToDelete->name)==0)
+            currentRelationNodeOut=currentRelationNodeOut->next;
 
         //Clean all the relation in nodes
         while(currentRelationNodeIn!=NULL){
@@ -770,6 +776,8 @@ void deleteEntity(char *nameEntity){
         if(currentTypeRelation->leaderboardPosition!=NULL){
             if(currentTypeRelation->leaderboardPosition->previous==NULL){
                 currentTypeRelation->typeInLeaderBoard->entities=currentTypeRelation->leaderboardPosition->next;
+                if (currentTypeRelation->leaderboardPosition->next!=NULL)currentTypeRelation->leaderboardPosition->next->previous=currentTypeRelation->leaderboardPosition->previous;
+
             } else{
                 currentTypeRelation->leaderboardPosition->previous->next=currentTypeRelation->leaderboardPosition->next;
                 if (currentTypeRelation->leaderboardPosition->next!=NULL)currentTypeRelation->leaderboardPosition->next->previous=currentTypeRelation->leaderboardPosition->previous;
@@ -1001,6 +1009,7 @@ relation* deleteRelationInSrc(entity* srcEntity, char*relType, char* relDst){
         currentRelTypeEnt->relationOut=NULL; //TO SOLVE PROBLEMS IN DELETING LAST ENTITY
 
     dstNode=currentRelation->otherRelation;
+    dstNode->otherRelation=NULL;
     currentRelation->otherRelation=NULL;
     currentRelation->previous=NULL;
     currentRelation->next=NULL;

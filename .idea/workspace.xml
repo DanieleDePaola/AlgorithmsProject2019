@@ -15,8 +15,6 @@
     <list default="true" id="4e251273-51ea-4a46-a259-46bf1ea6d7cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PUBBLICI/CustomTest" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/CustomTest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.2.py.out" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.2.py.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.py.out" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.py.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PUBBLICI/custom out" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/custom out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -43,20 +41,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="CustomTest" value="1314" />
-          <entry key="c" value="31290" />
-          <entry key="custom out" value="305" />
+          <entry key="CustomTest" value="1502" />
+          <entry key="c" value="31484" />
+          <entry key="custom out" value="326" />
           <entry key="in" value="16" />
-          <entry key="m" value="873" />
-          <entry key="txt" value="1394" />
+          <entry key="m" value="943" />
+          <entry key="txt" value="1446" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
           <entry key="Doxygen file" value="33" />
-          <entry key="ObjectiveC" value="32130" />
-          <entry key="PLAIN_TEXT" value="3028" />
+          <entry key="ObjectiveC" value="32394" />
+          <entry key="PLAIN_TEXT" value="3289" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -87,10 +85,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1451">
-              <caret line="247" column="10" selection-start-line="247" selection-start-column="10" selection-end-line="247" selection-end-column="10" />
+            <state relative-caret-position="129">
+              <caret line="133" selection-start-line="133" selection-end-line="133" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#4374#4536#0" />
+                <element signature="e#4374#5117#0" />
+                <element signature="e#5119#5327#0" />
+                <element signature="e#13550#15008#1" />
+                <element signature="e#34206#35973#0" />
               </folding>
             </state>
           </provider>
@@ -99,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-189">
-              <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+            <state>
+              <caret selection-end-line="170" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -108,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="121" column="3" lean-forward="true" selection-end-line="121" selection-end-column="3" />
+            <state relative-caret-position="242">
+              <caret line="172" column="32" selection-end-line="174" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -117,8 +120,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="24" lean-forward="true" selection-end-line="9" selection-end-column="3" />
+            <state>
+              <caret selection-end-line="2" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -127,7 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>boneless</find>
       <find>delent &quot;bon</find>
       <find>addrel &quot;grunt&quot;</find>
       <find>addrel</find>
@@ -150,13 +152,14 @@
       <find>betor</find>
       <find>delrel &quot;Wesley_Crusher&quot; &quot;Airiam&quot; &quot;taller_than&quot;</find>
       <find>&quot;Wesley_Crusher&quot;</find>
-      <find>break</find>
       <find>addent &quot;Damar&quot;</find>
       <find>chell</find>
       <find>deletere</find>
       <find>findha</find>
-      <find>report</find>
       <find>damar</find>
+      <find>ayala</find>
+      <find>report</find>
+      <find>break</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,11 +178,11 @@
         <option value="$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.py.out" />
         <option value="$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.1.py.out" />
         <option value="$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.1.in" />
-        <option value="$PROJECT_DIR$/PUBBLICI/custom out" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.2.in" />
         <option value="$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.py.out" />
         <option value="$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.in" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/PUBBLICI/custom out" />
         <option value="$PROJECT_DIR$/PUBBLICI/CustomTest" />
       </list>
     </option>
@@ -276,7 +279,7 @@
       <workItem from="1563615188074" duration="9386000" />
       <workItem from="1563703203490" duration="3450000" />
       <workItem from="1563738335843" duration="103376000" />
-      <workItem from="1564467663296" duration="86321000" />
+      <workItem from="1564467663296" duration="96187000" />
     </task>
     <task id="LOCAL-00001" summary="first reading- to test in the posix framework">
       <created>1563706179914</created>
@@ -390,11 +393,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566156699487</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="dropoff 2 working">
+      <created>1566213755756</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1566213755757</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210658000" />
+    <option name="totallyTimeSpent" value="220524000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,14 +417,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49802372" visible="true" weight="0.0" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49802372" weight="0.0" />
       <window_info id="Structure" order="1" sideWeight="0.5019763" side_tool="true" weight="0.32955405" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891247" />
-      <window_info anchor="bottom" id="Debug" order="2" visible="true" weight="0.25729442" />
+      <window_info active="true" anchor="bottom" id="Debug" order="2" visible="true" weight="0.38196287" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.0" />
@@ -476,7 +485,8 @@
     <MESSAGE value="half dropoff first test" />
     <MESSAGE value="dropoff first test passed" />
     <MESSAGE value="monotone, dropoff and mixup update" />
-    <option name="LAST_COMMIT_MESSAGE" value="monotone, dropoff and mixup update" />
+    <MESSAGE value="dropoff 2 working" />
+    <option name="LAST_COMMIT_MESSAGE" value="dropoff 2 working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -488,33 +498,46 @@
           <option name="timeStamp" value="299" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <dependency master-id="0" />
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>776</line>
+          <option name="timeStamp" value="391" />
+        </line-breakpoint>
+        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>184</line>
-          <option name="timeStamp" value="364" />
+          <line>758</line>
+          <option name="timeStamp" value="396" />
+        </line-breakpoint>
+        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <dependency leave-enabled="true" master-id="0" />
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>766</line>
+          <option name="timeStamp" value="397" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>195</line>
-          <option name="timeStamp" value="365" />
+          <line>754</line>
+          <option name="timeStamp" value="398" />
+        </line-breakpoint>
+        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <dependency leave-enabled="true" master-id="0" />
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>329</line>
+          <option name="timeStamp" value="402" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>203</line>
-          <option name="timeStamp" value="366" />
+          <line>362</line>
+          <option name="timeStamp" value="403" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>247</line>
-          <option name="timeStamp" value="367" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>242</line>
-          <option name="timeStamp" value="368" />
+          <line>457</line>
+          <option name="timeStamp" value="407" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -534,17 +557,11 @@
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="myLeaderBoard" language="ObjectiveC" />
-        <watch expression="entityVector[4046]" language="ObjectiveC" />
-        <watch expression="entityVector[7992]" language="ObjectiveC" />
-        <watch expression="entityVector[7970]" language="ObjectiveC" />
-        <watch expression="entityVector[2815]" language="ObjectiveC" />
-        <watch expression="entityVector[6852]" language="ObjectiveC" />
-        <watch expression="entityVector[1062]" language="ObjectiveC" />
-        <watch expression="entityVector[6912]" language="ObjectiveC" />
-        <watch expression="entityVector[1027]" language="ObjectiveC" />
         <watch expression="entityVector[2497]" language="ObjectiveC" />
-        <watch expression="entityVector[1375]" language="ObjectiveC" />
-        <watch expression="entityVector[1581]" language="ObjectiveC" />
+        <watch expression="entityVector[1027]" language="ObjectiveC" />
+        <watch expression="entityVector[646]" language="ObjectiveC" />
+        <watch expression="entityVector[7926]" language="ObjectiveC" />
+        <watch expression="entityVector[2817]" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
@@ -598,27 +615,22 @@
     </expressions>
     <expressions id="watch">
       <expression>
-        <expression-string>entityVector[1035]</expression-string>
+        <expression-string>entityVector[2817]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>entityVector[1581]</expression-string>
+        <expression-string>entityVector[7926]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>entityVector[1375]</expression-string>
+        <expression-string>memoryTypeLeaderboard</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>entityVector[1688]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entityVector[2497]</expression-string>
+        <expression-string>entityVector[646]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -628,22 +640,27 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>entityVector[6912]</expression-string>
+        <expression-string>entityVector[7992]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>entityVector[1062]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entityVector[6852]</expression-string>
+        <expression-string>entityVector[4046]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
         <expression-string>entityVector[2815]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[6912]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entityVector[1035]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -786,13 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="24" lean-forward="true" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.2.in">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -809,24 +819,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/MIXUP/batch3.2.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        <state>
+          <caret selection-end-line="170" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="121" column="3" lean-forward="true" selection-end-line="121" selection-end-column="3" />
+        <state relative-caret-position="242">
+          <caret line="172" column="32" selection-end-line="174" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1451">
-          <caret line="247" column="10" selection-start-line="247" selection-start-column="10" selection-end-line="247" selection-end-column="10" />
+        <state relative-caret-position="129">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#4374#4536#0" />
+            <element signature="e#4374#5117#0" />
+            <element signature="e#5119#5327#0" />
+            <element signature="e#13550#15008#1" />
+            <element signature="e#34206#35973#0" />
           </folding>
         </state>
       </provider>
