@@ -197,12 +197,18 @@ void addEntity(char* nameEntity){
         createEntityStructure(&entityVector[hashedIndex], nameEntity);
     }
     else{
-            if(entityVector[hashedIndex]->name!=NULL&&strcmp(entityVector[hashedIndex]->name, nameEntity)==0)return;
+            if(entityVector[hashedIndex]->name!=NULL&&strcmp(entityVector[hashedIndex]->name, nameEntity)==0)
+                return;
            //if entity does not exists yet
             int countMaxRehash=0;
             //TODO implement a more effective strategy for reashing
+
             //TODO V0 removed entityVector[hashedIndex]->name!=null in condition
             while(entityVector[hashedIndex]!=NULL){
+
+                if(entityVector[hashedIndex]->name!=NULL&&strcmp(entityVector[hashedIndex]->name, nameEntity)==0)
+                    return; //TODO V0 fix: the addEnt function must not work in case the entity already exists
+
                 countMaxRehash++;
                 if(countMaxRehash>MAXREHASHINGATTEMPTS)
                     printf("IT WAS NOT POSSIBLE TO INSERT A NEW ELEMENT IN TABLE, MAX ATTEMPTS REACHED!");
@@ -211,6 +217,7 @@ void addEntity(char* nameEntity){
 
                 if(hashedIndex>=entityVectorLenght)
                     hashedIndex=hashedIndex-entityVectorLenght;
+
             }
             createEntityStructure(&entityVector[hashedIndex], nameEntity);
 
@@ -328,7 +335,9 @@ void defineRelationFields( char** relSrcFinal, char** relDstFinal, char** relTyp
 void addRelation(char* relSrc,char* relDst, char* relType){
 
     //check if the entity exists
-    if(entityVector[findHashedValues(relSrc,entityVectorLenght)]!=NULL&&entityVector[findHashedValues(relDst,entityVectorLenght)]!=NULL){
+    entity* entitySrc = entityVector[findHashedValues(relSrc,entityVectorLenght)];
+    entity* entityDst = entityVector[findHashedValues(relDst,entityVectorLenght)];
+    if(entitySrc!=NULL&&entityDst!=NULL&&entitySrc->name!=NULL&&entityDst->name!=NULL){
         //check if the relation already exists inside the following function
         int* counterIn = addRelationToEntity(relSrc, relDst, relType);
         if(counterIn==0)return; //If the relation has been added yet
