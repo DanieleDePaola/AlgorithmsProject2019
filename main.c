@@ -11,7 +11,7 @@
 #define DIMCOMMAND 10
 #define FIELDSINADDREL 10
 #define DELTAREASHING 313
-#define MAXREHASHINGATTEMPTS 5
+#define MAXREHASHINGATTEMPTS 10
 
 //GLOBAL VARIABLES AND PROTOTYPES
 
@@ -107,15 +107,11 @@ int main() {
         if(!strcmp(command, "addent")) {
             entityName=findEntityName(buffer);
             addEntity(entityName);
-            entityName=NULL;
         }
         else if (!strcmp(command, "addrel")) {
 
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             addRelation(relSrc, relDst, relType);
-            relDst=NULL;
-            relSrc=NULL;
-            relType=NULL;
         }
         else if (!strcmp(command, "delent")) {
             entityName=findEntityName(buffer);
@@ -130,11 +126,12 @@ int main() {
             deleteRelation(relSrc, relDst, relType);
         }
 
-        else if(!strcmp(command, "break")){
-            printf("stop");
-        }
+//        else if(!strcmp(command, "break")){
+//            printf("stop");
+//        }
         else if (!strcmp(command, "end"))
             break;
+
 
     }
     return 0;
@@ -282,6 +279,7 @@ void defineRelationFields( char** relSrcFinal, char** relDstFinal, char** relTyp
     char* relSrc = malloc(DIMENTITYNAME); //TODO use less memory here
     char* relDst = malloc(DIMENTITYNAME);
     char* relType = malloc(DIMENTITYNAME);
+
     int indexBuffer=0;
     int flagRelSrcRead=0;
     int flagRelDstRead=0;
@@ -633,6 +631,8 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
         newType->previous=NULL;
         newType->relationIn=NULL;
         newType->relationOut=NULL;
+        newType->leaderboardPosition=NULL;
+        newType->typeInLeaderBoard=NULL;
         *relationTypes=newType;
         returnType=newType;
     } else{
@@ -656,6 +656,8 @@ typeRelationNormal* insertTypeRelationToEntity(typeRelationNormal** relationType
         newType->previous=previous;
         newType->relationIn=NULL;
         newType->relationOut=NULL;
+        newType->typeInLeaderBoard=NULL; //TODO v0 to avoid unconditional jump
+        newType->leaderboardPosition=NULL; //TODO v0 to avoid unconditional jump
 
         if(previous!=NULL)previous->next = newType;
         else *relationTypes=newType;
@@ -759,7 +761,6 @@ void deleteEntity(char *nameEntity){
 
     relation* currentRelationNodeIn; //to scan the list
     relation* currentRelationNodeOut;
-    relation* currentRelationNodeOutMemory;
     relation* nodeMemory=NULL;
     typeRelationNormal* memoryTypeEntityWoW;
 
@@ -830,10 +831,13 @@ void deleteEntity(char *nameEntity){
 
 
     }
+    char** nameMemory = &entityToDelete->name;
     free(entityToDelete->name);
-    free(entityToDelete);
+
     entityToDelete->name=NULL;
     entityToDelete->relationsType=NULL;
+    free(nameEntity); //TODO V1 free the variable used for the names
+    //free(entityToDelete);  //TODO v0, if I FREE this I can have strange values
     //Entity to delete is not null, otherwise I must rehash
 
 }
@@ -1118,11 +1122,15 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
             myLeaderBoard=nextType;
             if(nextType!=NULL&&nextType->previous!=NULL)nextType->previous=NULL;
             free(currentType);
+            relationTypesEntityDst->typeInLeaderBoard=NULL; //TODO V0 added to avoid segfault
+            relationTypesEntityDst->leaderboardPosition=NULL; //TODO V0 added to avoid segfault
         }
         else{
             previousType->next=nextType;
             if(nextType!=NULL)nextType->previous=previousType;
             free(currentType);
+            relationTypesEntityDst->typeInLeaderBoard=NULL; //TODO V0 added to avoid segfault
+            relationTypesEntityDst->leaderboardPosition=NULL; //TODO V0 added to avoid segfault
         }
     }
 
@@ -1132,6 +1140,8 @@ void deleteRelationInDst(relation* dstNode,char* relType,  typeRelationNormal* r
     if(relationTypesEntityDst->typeInLeaderBoard!=NULL&&relationTypesEntityDst->typeInLeaderBoard->winCount==relationTypesEntityDst->counterIn+1){
         relationTypesEntityDst->typeInLeaderBoard->winCount=findNewWinCount(relationTypesEntityDst->typeInLeaderBoard->entities);
     }
+
+
 
 }
 
@@ -1171,12 +1181,11 @@ void report(){
         printf("%c ", ';');
         currentTypeLb=currentTypeLb->next;
     }
-
     printf("\n");
+
+
+
 }
 
 
 
-
-//TODO function used to perform a rehashing
-//void rehash(hashtableEntity);
