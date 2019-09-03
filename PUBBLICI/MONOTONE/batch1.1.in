@@ -20,7 +20,6 @@ addrel "Gladia_Delmarre" "Elijah_Baley" "loves"
 addrel "Rikaine_Delmarre" "Jothan_Leebig" "is_killed_by"
 addrel "Jesse_Baley" "Elijah_Baley" "loves"
 report
-break
 addrel "R_Jander_Panell" "R_Giskard_Reventlov" "is_killed_by"
 addrel "Santirix_Gremionis" "Gladia_Delmarre" "loves"
 addrel "Gladia_Delmarre" "R_Jander_Panell" "loves"

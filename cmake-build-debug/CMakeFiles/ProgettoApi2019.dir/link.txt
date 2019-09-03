@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/ProgettoApi2019.dir/main.c.o  -o ProgettoApi2019 
+/usr/bin/cc -g   CMakeFiles/ProgettoApi2019.dir/main.c.o  -o ProgettoApi2019 -lm 
