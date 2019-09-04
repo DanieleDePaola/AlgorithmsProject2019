@@ -14,12 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e251273-51ea-4a46-a259-46bf1ea6d7cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PUBBLICI/CustomTest" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/CustomTest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PUBBLICI/custom out" beforeDir="false" afterPath="$PROJECT_DIR$/PUBBLICI/custom out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ProgettoApi2019.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -50,52 +45,52 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="CustomTest" value="2092" />
-          <entry key="c" value="35493" />
-          <entry key="custom out" value="392" />
+          <entry key="CustomTest" value="2100" />
+          <entry key="c" value="35612" />
+          <entry key="custom out" value="466" />
           <entry key="in" value="23" />
           <entry key="m" value="1117" />
-          <entry key="txt" value="2010" />
+          <entry key="txt" value="2020" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="8" />
           <entry key="Doxygen file" value="33" />
-          <entry key="ObjectiveC" value="36577" />
-          <entry key="PLAIN_TEXT" value="4509" />
+          <entry key="ObjectiveC" value="36696" />
+          <entry key="PLAIN_TEXT" value="4601" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Build All (disassembly)" value="29" />
-          <entry key="CustomTest" value="7" />
+          <entry key="Build All (disassembly)" value="30" />
+          <entry key="CustomTest" value="9" />
           <entry key="ProgettoApi2019 (disassembly)" value="12" />
           <entry key="c" value="17" />
           <entry key="custom out" value="8" />
           <entry key="hashing" value="1" />
           <entry key="in" value="58" />
           <entry key="out" value="33" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="2" />
-          <entry key="Disassembly" value="41" />
+          <entry key="Disassembly" value="42" />
           <entry key="ObjectiveC" value="17" />
-          <entry key="PLAIN_TEXT" value="108" />
+          <entry key="PLAIN_TEXT" value="114" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="254" lean-forward="true" selection-start-line="254" selection-end-line="254" />
+            <state relative-caret-position="847">
+              <caret line="244" column="5" lean-forward="true" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#6954#7148#0" />
@@ -117,17 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="2" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+            <state relative-caret-position="295">
+              <caret line="841" column="17" selection-end-line="844" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -135,17 +121,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="35" selection-end-line="11" selection-end-column="3" />
+            <state relative-caret-position="231">
+              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PUBBLICI/MULTIREPEATED/batch6.2.in">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TEST GROSSI/i/2019_08_21_11_20_47_969.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="78" column="16" lean-forward="true" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+            <state relative-caret-position="420">
+              <caret line="843" column="6" selection-start-line="840" selection-end-line="843" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -154,9 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>delent &quot;Slartibartfast&quot;</find>
-      <find>addent &quot;Slartibartfast&quot;</find>
-      <find>&quot;Slartibartfast&quot;</find>
       <find>&quot;Reginald_Barclay&quot;</find>
       <find>addent &quot;Reginald_Barclay&quot;</find>
       <find>delent &quot;Reginald_Barclay&quot;</find>
@@ -184,6 +167,9 @@
       <find>insertTypeRelationToEntity</find>
       <find>addRelation</find>
       <find>addRelationTypeLeaderboard</find>
+      <find>&quot; &quot;</find>
+      <find>free(relDst)</find>
+      <find>reldst</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,8 +195,10 @@
         <option value="$PROJECT_DIR$/PUBBLICI/MULTIREPEATED/batch6.1.in" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in" />
-        <option value="$PROJECT_DIR$/PUBBLICI/custom out" />
+        <option value="$PROJECT_DIR$/TEST GROSSI/i/2019_08_21_11_20_47_969.txt" />
         <option value="$PROJECT_DIR$/PUBBLICI/CustomTest" />
+        <option value="$PROJECT_DIR$/PUBBLICI/custom out" />
+        <option value="$PROJECT_DIR$/TEST GROSSI/input.txt" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
@@ -244,6 +232,12 @@
               <item name="ProgettoApi2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProgettoApi2019" type="462c0819:PsiDirectoryNode" />
               <item name="PUBBLICI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProgettoApi2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProgettoApi2019" type="462c0819:PsiDirectoryNode" />
+              <item name="PUBBLICI" type="462c0819:PsiDirectoryNode" />
+              <item name="DROPOFF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ProgettoApi2019" type="b2602c69:ProjectViewProjectNode" />
@@ -324,7 +318,7 @@
       <workItem from="1566289233539" duration="14622000" />
       <workItem from="1566318268936" duration="6128000" />
       <workItem from="1566340672600" duration="22994000" />
-      <workItem from="1567417074365" duration="40575000" />
+      <workItem from="1567417074365" duration="45883000" />
     </task>
     <task id="LOCAL-00001" summary="first reading- to test in the posix framework">
       <created>1563706179914</created>
@@ -480,11 +474,18 @@
       <option name="project" value="LOCAL" />
       <updated>1566394354565</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="19">
+      <created>1567534940045</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1567534940045</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315653000" />
+    <option name="totallyTimeSpent" value="320961000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -499,22 +500,22 @@
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49802372" visible="true" weight="0.32955405" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49802372" visible="true" weight="0.102796674" />
       <window_info id="Structure" order="1" sideWeight="0.5019763" side_tool="true" weight="0.32955405" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25066313" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.86173636" weight="0.53183025" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.86173636" weight="0.55437666" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49962208" weight="0.32891247" />
       <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.45351472" weight="0.4907162" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.45351472" weight="0.48938993" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32891247" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.24111867" side_tool="true" weight="0.7055703" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32891247" />
       <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49962208" weight="0.32891247" />
-      <window_info active="true" anchor="bottom" id="Run" order="12" sideWeight="0.75888133" visible="true" weight="0.60477453" />
+      <window_info anchor="bottom" id="Run" order="12" sideWeight="0.75888133" visible="true" weight="0.16180371" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -572,7 +573,8 @@
     <MESSAGE value="commit end day 19/08" />
     <MESSAGE value="it seems that all test pass, many errors on valgrind" />
     <MESSAGE value="18" />
-    <option name="LAST_COMMIT_MESSAGE" value="18" />
+    <MESSAGE value="19" />
+    <option name="LAST_COMMIT_MESSAGE" value="19" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -580,61 +582,60 @@
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>359</line>
+          <line>363</line>
           <option name="timeStamp" value="448" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <dependency id="0" />
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>141</line>
-          <option name="timeStamp" value="459" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>507</line>
+          <line>511</line>
           <option name="timeStamp" value="461" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>508</line>
+          <line>512</line>
           <option name="timeStamp" value="462" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>656</line>
+          <line>660</line>
           <option name="timeStamp" value="463" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>421</line>
+          <line>425</line>
           <option name="timeStamp" value="466" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>711</line>
+          <line>715</line>
           <option name="timeStamp" value="468" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>367</line>
+          <line>371</line>
           <option name="timeStamp" value="469" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency leave-enabled="true" master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>355</line>
+          <line>359</line>
           <option name="timeStamp" value="470" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <dependency master-id="0" />
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>706</line>
+          <line>710</line>
           <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>917</line>
+          <option name="timeStamp" value="472" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -654,8 +655,9 @@
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="myLeaderBoard" language="ObjectiveC" />
-        <watch expression="entityVector[5613]" language="ObjectiveC" />
-        <watch expression="entityVector[6665]" language="ObjectiveC" />
+        <watch expression="entityVector[4046]" language="ObjectiveC" />
+        <watch expression="entityVector[4359]" language="ObjectiveC" />
+        <watch expression="entityVector[4672]" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
@@ -927,13 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TEST GROSSI/i/2019_08_21_11_20_19_378.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/DROPOFF/batch2.2.in">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
@@ -941,31 +936,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
+    <entry file="file://$PROJECT_DIR$/TEST GROSSI/i/2019_08_21_11_20_19_378.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="2" selection-end-column="3" />
+        <state relative-caret-position="63">
+          <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/MULTIREPEATED/batch6.2.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="78" column="16" lean-forward="true" selection-end-line="969" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/MONOTONE/batch1.1.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        <state relative-caret-position="-420">
+          <caret line="20" column="16" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PUBBLICI/custom out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="841" column="17" selection-end-line="844" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TEST GROSSI/i/2019_08_21_11_20_47_969.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="843" column="6" selection-start-line="840" selection-end-line="843" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TEST GROSSI/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="471133" column="26" selection-end-line="471140" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PUBBLICI/CustomTest">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="35" selection-end-line="11" selection-end-column="3" />
+        <state relative-caret-position="231">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="254" lean-forward="true" selection-start-line="254" selection-end-line="254" />
+        <state relative-caret-position="847">
+          <caret line="244" column="5" lean-forward="true" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#6954#7148#0" />
@@ -980,13 +1003,6 @@
             <element signature="e#33913#34108#0" />
             <element signature="e#34643#34934#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PUBBLICI/MULTIREPEATED/batch6.2.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="78" column="16" lean-forward="true" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
         </state>
       </provider>
     </entry>

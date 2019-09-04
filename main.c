@@ -91,6 +91,10 @@ int findNewWinCount(entityLeaderBoard* currentLeaderBoardHead);
 relation* insertRelationNodeInSrc(relation** listOfRelationsInorOut, char* relSrc, char* relDst);
 relation* insertRelationNodeInDst(relation** listOfRelationsInorOut, char* relSrc, char* relDst);
 
+char* relSrc=NULL;
+char* relDst=NULL;
+char* relType=NULL;
+
 
 int main() {
     //Data acquisition
@@ -98,9 +102,9 @@ int main() {
     char* buffer = malloc(BUFFERMAXDIM);
     char* command = malloc(DIMCOMMAND);
     char* entityName=NULL;
-    char* relSrc=NULL;
-    char* relDst=NULL;
-    char* relType=NULL;
+//    char* relSrc=NULL;
+//    char* relDst=NULL;
+//    char* relType=NULL;
     flagRelTypeDelete=0;
 
     while(fgets(buffer,BUFFERMAXDIM, stdin)){
@@ -134,7 +138,7 @@ int main() {
             defineRelationFields(&relSrc, &relDst, &relType, buffer);
             deleteRelation(relSrc, relDst, relType);
             free(relSrc);
-            free(relDst);
+            free(relDst); //TODO torna
             free(relType);
         }
 
